@@ -6,7 +6,7 @@ const crypto = require('crypto');
 
 const REQUESTED_PORT = process.env.PORT ? Number(process.env.PORT) : 0;
 let ACTIVE_PORT = 0;
-const BUILD_VERSION = '5.4.0';
+const BUILD_VERSION = '5.6.1';
 const PUBLIC = path.join(__dirname, 'public');
 const ART_LIBRARY = JSON.parse(fs.readFileSync(path.join(__dirname,'art-library.json'),'utf8'));
 const ART_ASSETS = new Map(ART_LIBRARY.map(a=>[a.id,a]));
