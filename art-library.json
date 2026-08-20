@@ -1,38 +1,14 @@
 [
   {
-    "id": "face-cool",
-    "title": "Cool confidence",
+    "id": "emoji-sob",
+    "title": "Absolutely devastated",
     "category": "faces",
-    "url": "/assets/stickers/face-cool.png",
+    "url": "/assets/stickers/emoji-sob.png",
     "tags": [
-      "cool",
-      "smug",
-      "confident",
-      "presenter"
-    ]
-  },
-  {
-    "id": "face-confused",
-    "title": "Completely confused",
-    "category": "faces",
-    "url": "/assets/stickers/face-confused.png",
-    "tags": [
-      "confused",
-      "question",
-      "lost",
-      "awkward"
-    ]
-  },
-  {
-    "id": "face-smug",
-    "title": "Smug genius",
-    "category": "faces",
-    "url": "/assets/stickers/face-smug.png",
-    "tags": [
-      "smug",
-      "genius",
-      "confident",
-      "boss"
+      "crying",
+      "sad",
+      "fail",
+      "disaster"
     ]
   },
   {
@@ -48,15 +24,63 @@
     ]
   },
   {
-    "id": "face-terrified",
-    "title": "Terrified gamer",
+    "id": "emoji-grimace",
+    "title": "Awkward grimace",
     "category": "faces",
-    "url": "/assets/stickers/face-terrified.png",
+    "url": "/assets/stickers/emoji-grimace.png",
     "tags": [
-      "terrified",
-      "gamer",
-      "shock",
-      "horror"
+      "awkward",
+      "nervous",
+      "bad",
+      "reaction"
+    ]
+  },
+  {
+    "id": "emoji-nerd",
+    "title": "Big brain",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-nerd.png",
+    "tags": [
+      "nerd",
+      "smart",
+      "developer",
+      "analyst"
+    ]
+  },
+  {
+    "id": "emoji-clown",
+    "title": "Clown behaviour",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-clown.png",
+    "tags": [
+      "clown",
+      "bad",
+      "ridiculous",
+      "fail"
+    ]
+  },
+  {
+    "id": "face-confused",
+    "title": "Completely confused",
+    "category": "faces",
+    "url": "/assets/stickers/face-confused.png",
+    "tags": [
+      "confused",
+      "question",
+      "lost",
+      "awkward"
+    ]
+  },
+  {
+    "id": "face-cool",
+    "title": "Cool confidence",
+    "category": "faces",
+    "url": "/assets/stickers/face-cool.png",
+    "tags": [
+      "cool",
+      "smug",
+      "confident",
+      "presenter"
     ]
   },
   {
@@ -72,18 +96,6 @@
     ]
   },
   {
-    "id": "face-shades",
-    "title": "Too cool for this",
-    "category": "faces",
-    "url": "/assets/stickers/face-shades.png",
-    "tags": [
-      "cool",
-      "shades",
-      "celebrity",
-      "smug"
-    ]
-  },
-  {
     "id": "face-thinking",
     "title": "Deeply suspicious",
     "category": "faces",
@@ -96,15 +108,232 @@
     ]
   },
   {
-    "id": "creature-cool-cat",
-    "title": "Cool cat",
-    "category": "creatures",
-    "url": "/assets/stickers/creature-cool-cat.png",
+    "id": "emoji-disguise",
+    "title": "Definitely incognito",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-disguise.png",
     "tags": [
-      "cat",
+      "disguise",
+      "sneaky",
+      "secret",
+      "weird"
+    ]
+  },
+  {
+    "id": "emoji-sleep",
+    "title": "Fell asleep",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-sleep.png",
+    "tags": [
+      "sleep",
+      "boring",
+      "tired",
+      "loading"
+    ]
+  },
+  {
+    "id": "emoji-scream",
+    "title": "Full panic",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-scream.png",
+    "tags": [
+      "panic",
+      "scared",
+      "horror",
+      "shock"
+    ]
+  },
+  {
+    "id": "emoji-lol",
+    "title": "Lost it",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-lol.png",
+    "tags": [
+      "laugh",
+      "funny",
+      "reaction",
+      "chaos"
+    ]
+  },
+  {
+    "id": "emoji-sideeye",
+    "title": "Massive eye-roll",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-sideeye.png",
+    "tags": [
+      "bored",
+      "annoyed",
+      "pundit",
+      "reaction"
+    ]
+  },
+  {
+    "id": "emoji-melting",
+    "title": "Melting under pressure",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-melting.png",
+    "tags": [
+      "melting",
+      "pressure",
+      "awkward",
+      "fail"
+    ]
+  },
+  {
+    "id": "emoji-mindblown",
+    "title": "Mind blown",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-mindblown.png",
+    "tags": [
+      "shock",
+      "mind",
+      "crazy",
+      "reveal"
+    ]
+  },
+  {
+    "id": "emoji-money-face",
+    "title": "Money eyes",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-money-face.png",
+    "tags": [
+      "money",
+      "cash",
+      "microtransaction",
+      "greedy"
+    ]
+  },
+  {
+    "id": "emoji-party",
+    "title": "Party mode",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-party.png",
+    "tags": [
+      "party",
+      "celebration",
+      "winner",
+      "confetti"
+    ]
+  },
+  {
+    "id": "emoji-rage",
+    "title": "Pure rage",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-rage.png",
+    "tags": [
+      "angry",
+      "rage",
+      "furious",
+      "manager"
+    ]
+  },
+  {
+    "id": "face-smug",
+    "title": "Smug genius",
+    "category": "faces",
+    "url": "/assets/stickers/face-smug.png",
+    "tags": [
+      "smug",
+      "genius",
+      "confident",
+      "boss"
+    ]
+  },
+  {
+    "id": "face-terrified",
+    "title": "Terrified gamer",
+    "category": "faces",
+    "url": "/assets/stickers/face-terrified.png",
+    "tags": [
+      "terrified",
+      "gamer",
+      "shock",
+      "horror"
+    ]
+  },
+  {
+    "id": "emoji-think",
+    "title": "Thinking hard",
+    "category": "faces",
+    "url": "/assets/stickers/emoji-think.png",
+    "tags": [
+      "thinking",
+      "idea",
+      "confused",
+      "plan"
+    ]
+  },
+  {
+    "id": "face-shades",
+    "title": "Too cool for this",
+    "category": "faces",
+    "url": "/assets/stickers/face-shades.png",
+    "tags": [
       "cool",
-      "meme",
-      "mascot"
+      "shades",
+      "celebrity",
+      "smug"
+    ]
+  },
+  {
+    "id": "emoji-alien",
+    "title": "Alien",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-alien.png",
+    "tags": [
+      "alien",
+      "weird",
+      "sci-fi",
+      "monster"
+    ]
+  },
+  {
+    "id": "emoji-bat",
+    "title": "Bat",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-bat.png",
+    "tags": [
+      "bat",
+      "horror",
+      "animal",
+      "night"
+    ]
+  },
+  {
+    "id": "premium-gremlin",
+    "title": "Big-eyed gremlin",
+    "category": "creatures",
+    "url": "/assets/stickers/premium-gremlin.png",
+    "tags": [
+      "gremlin",
+      "monster",
+      "chaos",
+      "weird"
+    ]
+  },
+  {
+    "id": "premium-bored-fish",
+    "title": "Bored fish",
+    "category": "creatures",
+    "url": "/assets/stickers/premium-bored-fish.png",
+    "tags": [
+      "fish",
+      "bored",
+      "awkward",
+      "random"
+    ]
+  },
+  {
+    "id": "premium-buff-hamster",
+    "title": "Buff hamster",
+    "category": "creatures",
+    "url": "/assets/stickers/premium-buff-hamster.png",
+    "tags": [
+      "hamster",
+      "strong",
+      "muscle",
+      "mascot",
+      "ridiculous"
     ]
   },
   {
@@ -120,39 +349,38 @@
     ]
   },
   {
-    "id": "creature-raccoon",
-    "title": "Sneaky raccoon",
+    "id": "emoji-monkey",
+    "title": "Chaos monkey",
     "category": "creatures",
-    "url": "/assets/stickers/creature-raccoon.png",
+    "url": "/assets/stickers/emoji-monkey.png",
     "tags": [
-      "raccoon",
-      "sneaky",
-      "thief",
-      "animal"
+      "monkey",
+      "animal",
+      "chaos"
     ]
   },
   {
-    "id": "creature-goblin",
-    "title": "Greedy goblin",
+    "id": "creature-cool-cat",
+    "title": "Cool cat",
     "category": "creatures",
-    "url": "/assets/stickers/creature-goblin.png",
+    "url": "/assets/stickers/creature-cool-cat.png",
     "tags": [
-      "goblin",
-      "monster",
-      "greedy",
-      "villain"
+      "cat",
+      "cool",
+      "meme",
+      "mascot"
     ]
   },
   {
-    "id": "creature-gremlin",
-    "title": "Tiny gremlin",
+    "id": "emoji-dragon",
+    "title": "Dragon",
     "category": "creatures",
-    "url": "/assets/stickers/creature-gremlin.png",
+    "url": "/assets/stickers/emoji-dragon.png",
     "tags": [
-      "gremlin",
-      "monster",
-      "chaos",
-      "villain"
+      "dragon",
+      "fantasy",
+      "boss",
+      "monster"
     ]
   },
   {
@@ -168,6 +396,42 @@
     ]
   },
   {
+    "id": "premium-friendly-ghost",
+    "title": "Friendly ghost",
+    "category": "creatures",
+    "url": "/assets/stickers/premium-friendly-ghost.png",
+    "tags": [
+      "ghost",
+      "horror",
+      "spooky",
+      "film"
+    ]
+  },
+  {
+    "id": "creature-goblin",
+    "title": "Greedy goblin",
+    "category": "creatures",
+    "url": "/assets/stickers/creature-goblin.png",
+    "tags": [
+      "goblin",
+      "monster",
+      "greedy",
+      "villain"
+    ]
+  },
+  {
+    "id": "emoji-chicken",
+    "title": "Hero chicken",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-chicken.png",
+    "tags": [
+      "chicken",
+      "bird",
+      "animal",
+      "ridiculous"
+    ]
+  },
+  {
     "id": "creature-corgi",
     "title": "Heroic corgi",
     "category": "creatures",
@@ -177,6 +441,124 @@
       "hero",
       "cute",
       "mascot"
+    ]
+  },
+  {
+    "id": "emoji-frog",
+    "title": "Judgemental frog",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-frog.png",
+    "tags": [
+      "frog",
+      "animal",
+      "weird",
+      "mascot"
+    ]
+  },
+  {
+    "id": "emoji-cat",
+    "title": "Normal-ish cat",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-cat.png",
+    "tags": [
+      "cat",
+      "animal",
+      "mascot"
+    ]
+  },
+  {
+    "id": "emoji-octopus",
+    "title": "Octopus",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-octopus.png",
+    "tags": [
+      "octopus",
+      "animal",
+      "weird"
+    ]
+  },
+  {
+    "id": "emoji-pig",
+    "title": "Pig",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-pig.png",
+    "tags": [
+      "pig",
+      "animal",
+      "mascot"
+    ]
+  },
+  {
+    "id": "premium-chaos-goose",
+    "title": "Plunger goose",
+    "category": "creatures",
+    "url": "/assets/stickers/premium-chaos-goose.png",
+    "tags": [
+      "goose",
+      "bird",
+      "chaos",
+      "plunger",
+      "animal"
+    ]
+  },
+  {
+    "id": "emoji-shark",
+    "title": "Shark",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-shark.png",
+    "tags": [
+      "shark",
+      "animal",
+      "danger",
+      "monster"
+    ]
+  },
+  {
+    "id": "premium-sneaky-raccoon",
+    "title": "Sneaky raccoon",
+    "category": "creatures",
+    "url": "/assets/stickers/premium-sneaky-raccoon.png",
+    "tags": [
+      "raccoon",
+      "sneaky",
+      "thief",
+      "animal"
+    ]
+  },
+  {
+    "id": "emoji-sloth",
+    "title": "Speedy sloth",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-sloth.png",
+    "tags": [
+      "sloth",
+      "slow",
+      "animal",
+      "loading"
+    ]
+  },
+  {
+    "id": "premium-hero-corgi",
+    "title": "Superhero corgi",
+    "category": "creatures",
+    "url": "/assets/stickers/premium-hero-corgi.png",
+    "tags": [
+      "dog",
+      "hero",
+      "cute",
+      "mascot"
+    ]
+  },
+  {
+    "id": "emoji-duck",
+    "title": "Suspicious duck",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-duck.png",
+    "tags": [
+      "duck",
+      "bird",
+      "animal",
+      "random"
     ]
   },
   {
@@ -192,49 +574,88 @@
     ]
   },
   {
-    "id": "object-trophy",
-    "title": "Trophy",
-    "category": "objects",
-    "url": "/assets/stickers/object-trophy.png",
+    "id": "emoji-dinosaur",
+    "title": "Tiny dinosaur",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-dinosaur.png",
     "tags": [
-      "trophy",
-      "win",
-      "award",
-      "champion"
+      "dinosaur",
+      "monster",
+      "boss",
+      "animal"
     ]
   },
   {
-    "id": "object-controller",
-    "title": "Controller",
-    "category": "objects",
-    "url": "/assets/stickers/object-controller.png",
+    "id": "creature-gremlin",
+    "title": "Tiny gremlin",
+    "category": "creatures",
+    "url": "/assets/stickers/creature-gremlin.png",
     "tags": [
-      "game",
-      "controller",
-      "games"
+      "gremlin",
+      "monster",
+      "chaos",
+      "villain"
     ]
   },
   {
-    "id": "object-football",
-    "title": "Football",
-    "category": "objects",
-    "url": "/assets/stickers/object-football.png",
+    "id": "premium-cool-cat",
+    "title": "Too-cool cat",
+    "category": "creatures",
+    "url": "/assets/stickers/premium-cool-cat.png",
     "tags": [
-      "football",
-      "sport",
-      "ball"
+      "cat",
+      "cool",
+      "meme",
+      "mascot",
+      "smug"
     ]
   },
   {
-    "id": "object-mic",
-    "title": "Microphone",
-    "category": "objects",
-    "url": "/assets/stickers/object-mic.png",
+    "id": "emoji-raccoon",
+    "title": "Trash panda",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-raccoon.png",
     "tags": [
-      "microphone",
-      "caster",
-      "commentator",
-      "interview"
+      "raccoon",
+      "sneaky",
+      "thief",
+      "animal"
+    ]
+  },
+  {
+    "id": "premium-greedy-goblin",
+    "title": "Treasure goblin",
+    "category": "creatures",
+    "url": "/assets/stickers/premium-greedy-goblin.png",
+    "tags": [
+      "goblin",
+      "greedy",
+      "loot",
+      "monster",
+      "villain"
+    ]
+  },
+  {
+    "id": "emoji-unicorn",
+    "title": "Unicorn",
+    "category": "creatures",
+    "url": "/assets/stickers/emoji-unicorn.png",
+    "tags": [
+      "unicorn",
+      "magic",
+      "weird",
+      "mascot"
+    ]
+  },
+  {
+    "id": "emoji-bomb",
+    "title": "Bomb",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-bomb.png",
+    "tags": [
+      "bomb",
+      "explosion",
+      "chaos"
     ]
   },
   {
@@ -250,6 +671,42 @@
     ]
   },
   {
+    "id": "emoji-camera",
+    "title": "Camera",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-camera.png",
+    "tags": [
+      "camera",
+      "film",
+      "photo",
+      "recording"
+    ]
+  },
+  {
+    "id": "emoji-chair",
+    "title": "Chair",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-chair.png",
+    "tags": [
+      "chair",
+      "director",
+      "prop",
+      "random"
+    ]
+  },
+  {
+    "id": "emoji-trophy",
+    "title": "Championship trophy",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-trophy.png",
+    "tags": [
+      "trophy",
+      "winner",
+      "award",
+      "champion"
+    ]
+  },
+  {
     "id": "object-clapper",
     "title": "Clapperboard",
     "category": "objects",
@@ -262,15 +719,26 @@
     ]
   },
   {
-    "id": "object-red-card",
-    "title": "Red card",
+    "id": "emoji-clapper",
+    "title": "Clapperboard",
     "category": "objects",
-    "url": "/assets/stickers/object-red-card.png",
+    "url": "/assets/stickers/emoji-clapper.png",
     "tags": [
-      "card",
-      "referee",
-      "sport",
-      "ban"
+      "film",
+      "movie",
+      "clapper",
+      "action"
+    ]
+  },
+  {
+    "id": "object-controller",
+    "title": "Controller",
+    "category": "objects",
+    "url": "/assets/stickers/object-controller.png",
+    "tags": [
+      "game",
+      "controller",
+      "games"
     ]
   },
   {
@@ -283,6 +751,181 @@
       "king",
       "winner",
       "boss"
+    ]
+  },
+  {
+    "id": "object-chair",
+    "title": "Director chair",
+    "category": "objects",
+    "url": "/assets/stickers/object-chair.png",
+    "tags": [
+      "chair",
+      "director",
+      "film"
+    ]
+  },
+  {
+    "id": "emoji-toilet-roll",
+    "title": "Emergency toilet roll",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-toilet-roll.png",
+    "tags": [
+      "toilet",
+      "roll",
+      "random",
+      "prop"
+    ]
+  },
+  {
+    "id": "emoji-extinguisher",
+    "title": "Fire extinguisher",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-extinguisher.png",
+    "tags": [
+      "fire",
+      "safety",
+      "chaos",
+      "emergency"
+    ]
+  },
+  {
+    "id": "object-football",
+    "title": "Football",
+    "category": "objects",
+    "url": "/assets/stickers/object-football.png",
+    "tags": [
+      "football",
+      "sport",
+      "ball"
+    ]
+  },
+  {
+    "id": "emoji-football",
+    "title": "Football",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-football.png",
+    "tags": [
+      "football",
+      "sport",
+      "ball"
+    ]
+  },
+  {
+    "id": "emoji-gamepad",
+    "title": "Game controller",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-gamepad.png",
+    "tags": [
+      "controller",
+      "game",
+      "gaming"
+    ]
+  },
+  {
+    "id": "premium-trophy",
+    "title": "Golden trophy",
+    "category": "objects",
+    "url": "/assets/stickers/premium-trophy.png",
+    "tags": [
+      "trophy",
+      "winner",
+      "award",
+      "champion"
+    ]
+  },
+  {
+    "id": "emoji-headphones",
+    "title": "Headphones",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-headphones.png",
+    "tags": [
+      "headset",
+      "audio",
+      "esports",
+      "caster"
+    ]
+  },
+  {
+    "id": "emoji-keyboard",
+    "title": "Keyboard",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-keyboard.png",
+    "tags": [
+      "keyboard",
+      "tech",
+      "esports",
+      "game"
+    ]
+  },
+  {
+    "id": "emoji-wand",
+    "title": "Magic wand",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-wand.png",
+    "tags": [
+      "magic",
+      "fantasy",
+      "weird"
+    ]
+  },
+  {
+    "id": "emoji-megaphone",
+    "title": "Megaphone",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-megaphone.png",
+    "tags": [
+      "megaphone",
+      "coach",
+      "manager",
+      "shout"
+    ]
+  },
+  {
+    "id": "object-mic",
+    "title": "Microphone",
+    "category": "objects",
+    "url": "/assets/stickers/object-mic.png",
+    "tags": [
+      "microphone",
+      "caster",
+      "commentator",
+      "interview"
+    ]
+  },
+  {
+    "id": "emoji-microphone",
+    "title": "Microphone",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-microphone.png",
+    "tags": [
+      "microphone",
+      "caster",
+      "commentator",
+      "interview"
+    ]
+  },
+  {
+    "id": "emoji-money-wings",
+    "title": "Money flying away",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-money-wings.png",
+    "tags": [
+      "money",
+      "cash",
+      "microtransaction",
+      "sponsor"
+    ]
+  },
+  {
+    "id": "emoji-gift",
+    "title": "Mystery gift",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-gift.png",
+    "tags": [
+      "gift",
+      "loot",
+      "box",
+      "mystery"
     ]
   },
   {
@@ -299,61 +942,111 @@
     ]
   },
   {
-    "id": "object-energy",
-    "title": "Energy drink",
+    "id": "premium-controller",
+    "title": "Premium controller",
     "category": "objects",
-    "url": "/assets/stickers/object-energy.png",
+    "url": "/assets/stickers/premium-controller.png",
     "tags": [
-      "energy",
-      "drink",
-      "esports",
-      "sponsor"
-    ]
-  },
-  {
-    "id": "object-keyboard",
-    "title": "Keyboard",
-    "category": "objects",
-    "url": "/assets/stickers/object-keyboard.png",
-    "tags": [
-      "keyboard",
-      "esports",
+      "controller",
       "game",
-      "tech"
+      "gaming",
+      "player"
     ]
   },
   {
-    "id": "object-headset",
-    "title": "Headset",
+    "id": "object-red-card",
+    "title": "Red card",
     "category": "objects",
-    "url": "/assets/stickers/object-headset.png",
+    "url": "/assets/stickers/object-red-card.png",
     "tags": [
-      "headset",
-      "esports",
-      "caster",
-      "game"
-    ]
-  },
-  {
-    "id": "object-whistle",
-    "title": "Whistle",
-    "category": "objects",
-    "url": "/assets/stickers/object-whistle.png",
-    "tags": [
-      "whistle",
+      "card",
+      "referee",
       "sport",
-      "referee"
+      "ban"
     ]
   },
   {
-    "id": "object-chair",
-    "title": "Director chair",
+    "id": "emoji-red-square",
+    "title": "Red card energy",
     "category": "objects",
-    "url": "/assets/stickers/object-chair.png",
+    "url": "/assets/stickers/emoji-red-square.png",
     "tags": [
-      "chair",
-      "director",
-      "film"
+      "red",
+      "card",
+      "referee",
+      "ban"
+    ]
+  },
+  {
+    "id": "premium-crown",
+    "title": "Ridiculous crown",
+    "category": "objects",
+    "url": "/assets/stickers/premium-crown.png",
+    "tags": [
+      "crown",
+      "king",
+      "winner",
+      "boss",
+      "royal"
+    ]
+  },
+  {
+    "id": "emoji-rocket",
+    "title": "Rocket",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-rocket.png",
+    "tags": [
+      "rocket",
+      "launch",
+      "fast",
+      "space"
+    ]
+  },
+  {
+    "id": "emoji-crown",
+    "title": "Royal crown",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-crown.png",
+    "tags": [
+      "crown",
+      "king",
+      "winner",
+      "boss"
+    ]
+  },
+  {
+    "id": "emoji-cart",
+    "title": "Shopping cart",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-cart.png",
+    "tags": [
+      "shop",
+      "money",
+      "microtransaction",
+      "purchase"
+    ]
+  },
+  {
+    "id": "premium-microphone",
+    "title": "Studio microphone",
+    "category": "objects",
+    "url": "/assets/stickers/premium-microphone.png",
+    "tags": [
+      "microphone",
+      "caster",
+      "commentator",
+      "interview"
+    ]
+  },
+  {
+    "id": "emoji-drink",
+    "title": "Suspicious drink",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-drink.png",
+    "tags": [
+      "drink",
+      "sponsor",
+      "energy"
     ]
   },
   {
@@ -369,26 +1062,109 @@
     ]
   },
   {
-    "id": "game-boss",
-    "title": "Final boss",
-    "category": "games",
-    "url": "/assets/stickers/game-boss.png",
+    "id": "object-trophy",
+    "title": "Trophy",
+    "category": "objects",
+    "url": "/assets/stickers/object-trophy.png",
     "tags": [
-      "boss",
-      "monster",
-      "villain",
-      "final"
+      "trophy",
+      "win",
+      "award",
+      "champion"
     ]
   },
   {
-    "id": "game-npc",
-    "title": "Quest NPC",
-    "category": "games",
-    "url": "/assets/stickers/game-npc.png",
+    "id": "object-whistle",
+    "title": "Whistle",
+    "category": "objects",
+    "url": "/assets/stickers/object-whistle.png",
     "tags": [
-      "npc",
-      "quest",
-      "character"
+      "whistle",
+      "sport",
+      "referee"
+    ]
+  },
+  {
+    "id": "emoji-wrench",
+    "title": "Wrench",
+    "category": "objects",
+    "url": "/assets/stickers/emoji-wrench.png",
+    "tags": [
+      "wrench",
+      "repair",
+      "developer",
+      "fix"
+    ]
+  },
+  {
+    "id": "emoji-joystick",
+    "title": "Arcade stick",
+    "category": "games",
+    "url": "/assets/stickers/emoji-joystick.png",
+    "tags": [
+      "arcade",
+      "game",
+      "controller",
+      "retro"
+    ]
+  },
+  {
+    "id": "emoji-swords",
+    "title": "Battle swords",
+    "category": "games",
+    "url": "/assets/stickers/emoji-swords.png",
+    "tags": [
+      "sword",
+      "battle",
+      "combat",
+      "game"
+    ]
+  },
+  {
+    "id": "emoji-castle",
+    "title": "Castle",
+    "category": "games",
+    "url": "/assets/stickers/emoji-castle.png",
+    "tags": [
+      "castle",
+      "level",
+      "fantasy",
+      "game"
+    ]
+  },
+  {
+    "id": "emoji-coin",
+    "title": "Coin",
+    "category": "games",
+    "url": "/assets/stickers/emoji-coin.png",
+    "tags": [
+      "coin",
+      "money",
+      "loot",
+      "game"
+    ]
+  },
+  {
+    "id": "emoji-dynamite",
+    "title": "Definitely safe dynamite",
+    "category": "games",
+    "url": "/assets/stickers/emoji-dynamite.png",
+    "tags": [
+      "dynamite",
+      "explosion",
+      "game",
+      "chaos"
+    ]
+  },
+  {
+    "id": "game-demon",
+    "title": "Demon enemy",
+    "category": "games",
+    "url": "/assets/stickers/game-demon.png",
+    "tags": [
+      "demon",
+      "enemy",
+      "monster"
     ]
   },
   {
@@ -404,17 +1180,6 @@
     ]
   },
   {
-    "id": "game-chest",
-    "title": "Loot chest",
-    "category": "games",
-    "url": "/assets/stickers/game-chest.png",
-    "tags": [
-      "loot",
-      "chest",
-      "reward"
-    ]
-  },
-  {
     "id": "game-glitch",
     "title": "Glitch monster",
     "category": "games",
@@ -426,26 +1191,86 @@
     ]
   },
   {
-    "id": "game-demon",
-    "title": "Demon enemy",
+    "id": "emoji-invader",
+    "title": "Pixel invader",
     "category": "games",
-    "url": "/assets/stickers/game-demon.png",
+    "url": "/assets/stickers/emoji-invader.png",
     "tags": [
-      "demon",
+      "game",
       "enemy",
+      "retro",
       "monster"
     ]
   },
   {
-    "id": "game-useless",
-    "title": "Useless item",
+    "id": "premium-mystery-box",
+    "title": "Premium mystery box",
     "category": "games",
-    "url": "/assets/stickers/game-useless.png",
+    "url": "/assets/stickers/premium-mystery-box.png",
     "tags": [
-      "item",
-      "useless",
       "loot",
-      "funny"
+      "box",
+      "mystery",
+      "microtransaction",
+      "reward"
+    ]
+  },
+  {
+    "id": "emoji-puzzle",
+    "title": "Puzzle piece",
+    "category": "games",
+    "url": "/assets/stickers/emoji-puzzle.png",
+    "tags": [
+      "puzzle",
+      "mechanic",
+      "game"
+    ]
+  },
+  {
+    "id": "game-npc",
+    "title": "Quest NPC",
+    "category": "games",
+    "url": "/assets/stickers/game-npc.png",
+    "tags": [
+      "npc",
+      "quest",
+      "character"
+    ]
+  },
+  {
+    "id": "emoji-gem",
+    "title": "Rare loot",
+    "category": "games",
+    "url": "/assets/stickers/emoji-gem.png",
+    "tags": [
+      "gem",
+      "loot",
+      "reward",
+      "game"
+    ]
+  },
+  {
+    "id": "emoji-robot",
+    "title": "Robot NPC",
+    "category": "games",
+    "url": "/assets/stickers/emoji-robot.png",
+    "tags": [
+      "robot",
+      "npc",
+      "ai",
+      "game"
+    ]
+  },
+  {
+    "id": "emoji-shield",
+    "title": "Shield",
+    "category": "games",
+    "url": "/assets/stickers/emoji-shield.png",
+    "tags": [
+      "shield",
+      "defence",
+      "combat",
+      "game"
     ]
   },
   {
@@ -461,6 +1286,66 @@
     ]
   },
   {
+    "id": "emoji-target",
+    "title": "Target",
+    "category": "games",
+    "url": "/assets/stickers/emoji-target.png",
+    "tags": [
+      "target",
+      "aim",
+      "objective",
+      "game"
+    ]
+  },
+  {
+    "id": "game-useless",
+    "title": "Useless item",
+    "category": "games",
+    "url": "/assets/stickers/game-useless.png",
+    "tags": [
+      "item",
+      "useless",
+      "loot",
+      "funny"
+    ]
+  },
+  {
+    "id": "emoji-wizard",
+    "title": "Wizard",
+    "category": "games",
+    "url": "/assets/stickers/emoji-wizard.png",
+    "tags": [
+      "wizard",
+      "magic",
+      "fantasy",
+      "npc"
+    ]
+  },
+  {
+    "id": "emoji-map",
+    "title": "World map",
+    "category": "games",
+    "url": "/assets/stickers/emoji-map.png",
+    "tags": [
+      "map",
+      "open world",
+      "level",
+      "game"
+    ]
+  },
+  {
+    "id": "emoji-zombie",
+    "title": "Zombie",
+    "category": "games",
+    "url": "/assets/stickers/emoji-zombie.png",
+    "tags": [
+      "zombie",
+      "enemy",
+      "horror",
+      "game"
+    ]
+  },
+  {
     "id": "film-actor",
     "title": "Award-winning actor",
     "category": "film",
@@ -472,36 +1357,15 @@
     ]
   },
   {
-    "id": "film-villain",
-    "title": "Dramatic villain",
+    "id": "emoji-star",
+    "title": "Big star",
     "category": "film",
-    "url": "/assets/stickers/film-villain.png",
+    "url": "/assets/stickers/emoji-star.png",
     "tags": [
-      "villain",
-      "horror",
-      "monster"
-    ]
-  },
-  {
-    "id": "film-director",
-    "title": "Furious director",
-    "category": "film",
-    "url": "/assets/stickers/film-director.png",
-    "tags": [
-      "director",
-      "film",
-      "angry"
-    ]
-  },
-  {
-    "id": "film-zombie",
-    "title": "Zombie extra",
-    "category": "film",
-    "url": "/assets/stickers/film-zombie.png",
-    "tags": [
-      "zombie",
-      "horror",
-      "extra"
+      "star",
+      "celebrity",
+      "actor",
+      "film"
     ]
   },
   {
@@ -517,25 +1381,14 @@
     ]
   },
   {
-    "id": "film-spotlight",
-    "title": "Spotlight",
+    "id": "emoji-popcorn",
+    "title": "Cinema popcorn",
     "category": "film",
-    "url": "/assets/stickers/film-spotlight.png",
+    "url": "/assets/stickers/emoji-popcorn.png",
     "tags": [
-      "spotlight",
-      "stage",
-      "film"
-    ]
-  },
-  {
-    "id": "film-action",
-    "title": "ACTION!",
-    "category": "film",
-    "url": "/assets/stickers/film-action.png",
-    "tags": [
-      "action",
-      "clapper",
-      "film"
+      "popcorn",
+      "cinema",
+      "movie"
     ]
   },
   {
@@ -550,14 +1403,197 @@
     ]
   },
   {
-    "id": "esport-caster",
-    "title": "Hype caster",
-    "category": "esports",
-    "url": "/assets/stickers/esport-caster.png",
+    "id": "emoji-detective",
+    "title": "Detective",
+    "category": "film",
+    "url": "/assets/stickers/emoji-detective.png",
     "tags": [
-      "caster",
-      "hype",
-      "commentator"
+      "detective",
+      "mystery",
+      "film"
+    ]
+  },
+  {
+    "id": "emoji-theatre",
+    "title": "Drama masks",
+    "category": "film",
+    "url": "/assets/stickers/emoji-theatre.png",
+    "tags": [
+      "actor",
+      "drama",
+      "film",
+      "performance"
+    ]
+  },
+  {
+    "id": "film-villain",
+    "title": "Dramatic villain",
+    "category": "film",
+    "url": "/assets/stickers/film-villain.png",
+    "tags": [
+      "villain",
+      "horror",
+      "monster"
+    ]
+  },
+  {
+    "id": "premium-camera",
+    "title": "Film camera",
+    "category": "film",
+    "url": "/assets/stickers/premium-camera.png",
+    "tags": [
+      "camera",
+      "film",
+      "tv",
+      "recording"
+    ]
+  },
+  {
+    "id": "premium-clapper",
+    "title": "Film clapperboard",
+    "category": "film",
+    "url": "/assets/stickers/premium-clapper.png",
+    "tags": [
+      "clapper",
+      "film",
+      "movie",
+      "action"
+    ]
+  },
+  {
+    "id": "emoji-filmframes",
+    "title": "Film reel",
+    "category": "film",
+    "url": "/assets/stickers/emoji-filmframes.png",
+    "tags": [
+      "film",
+      "movie",
+      "editing"
+    ]
+  },
+  {
+    "id": "film-director",
+    "title": "Furious director",
+    "category": "film",
+    "url": "/assets/stickers/film-director.png",
+    "tags": [
+      "director",
+      "film",
+      "angry"
+    ]
+  },
+  {
+    "id": "emoji-movie-camera",
+    "title": "Movie camera",
+    "category": "film",
+    "url": "/assets/stickers/emoji-movie-camera.png",
+    "tags": [
+      "camera",
+      "film",
+      "tv"
+    ]
+  },
+  {
+    "id": "emoji-superhero",
+    "title": "Superhero",
+    "category": "film",
+    "url": "/assets/stickers/emoji-superhero.png",
+    "tags": [
+      "hero",
+      "film",
+      "blockbuster"
+    ]
+  },
+  {
+    "id": "emoji-supervillain",
+    "title": "Supervillain",
+    "category": "film",
+    "url": "/assets/stickers/emoji-supervillain.png",
+    "tags": [
+      "villain",
+      "film",
+      "blockbuster"
+    ]
+  },
+  {
+    "id": "emoji-television",
+    "title": "Television",
+    "category": "film",
+    "url": "/assets/stickers/emoji-television.png",
+    "tags": [
+      "tv",
+      "film",
+      "broadcast"
+    ]
+  },
+  {
+    "id": "emoji-vampire",
+    "title": "Vampire",
+    "category": "film",
+    "url": "/assets/stickers/emoji-vampire.png",
+    "tags": [
+      "vampire",
+      "horror",
+      "villain",
+      "film"
+    ]
+  },
+  {
+    "id": "film-zombie",
+    "title": "Zombie extra",
+    "category": "film",
+    "url": "/assets/stickers/film-zombie.png",
+    "tags": [
+      "zombie",
+      "horror",
+      "extra"
+    ]
+  },
+  {
+    "id": "emoji-battery",
+    "title": "Battery at 1%",
+    "category": "esports",
+    "url": "/assets/stickers/emoji-battery.png",
+    "tags": [
+      "battery",
+      "tech",
+      "pause",
+      "esports"
+    ]
+  },
+  {
+    "id": "emoji-satellite",
+    "title": "Broadcast signal",
+    "category": "esports",
+    "url": "/assets/stickers/emoji-satellite.png",
+    "tags": [
+      "broadcast",
+      "signal",
+      "esports",
+      "tech"
+    ]
+  },
+  {
+    "id": "esport-champ",
+    "title": "Champion trophy",
+    "category": "esports",
+    "url": "/assets/stickers/esport-champ.png",
+    "tags": [
+      "champion",
+      "trophy",
+      "winner"
+    ]
+  },
+  {
+    "id": "emoji-lightning",
+    "title": "Clutch lightning",
+    "category": "esports",
+    "url": "/assets/stickers/emoji-lightning.png",
+    "tags": [
+      "lightning",
+      "clutch",
+      "fast",
+      "esports"
     ]
   },
   {
@@ -569,6 +1605,65 @@
       "coach",
       "team",
       "strategy"
+    ]
+  },
+  {
+    "id": "esport-sub",
+    "title": "Emergency substitute",
+    "category": "esports",
+    "url": "/assets/stickers/esport-sub.png",
+    "tags": [
+      "substitute",
+      "emergency",
+      "banana",
+      "funny"
+    ]
+  },
+  {
+    "id": "emoji-laptop",
+    "title": "Gaming laptop",
+    "category": "esports",
+    "url": "/assets/stickers/emoji-laptop.png",
+    "tags": [
+      "computer",
+      "gaming",
+      "esports",
+      "tech"
+    ]
+  },
+  {
+    "id": "emoji-gold-medal",
+    "title": "Gold medal",
+    "category": "esports",
+    "url": "/assets/stickers/emoji-gold-medal.png",
+    "tags": [
+      "winner",
+      "medal",
+      "champion",
+      "esports"
+    ]
+  },
+  {
+    "id": "esport-caster",
+    "title": "Hype caster",
+    "category": "esports",
+    "url": "/assets/stickers/esport-caster.png",
+    "tags": [
+      "caster",
+      "hype",
+      "commentator"
+    ]
+  },
+  {
+    "id": "emoji-mouse",
+    "title": "Mouse",
+    "category": "esports",
+    "url": "/assets/stickers/emoji-mouse.png",
+    "tags": [
+      "mouse",
+      "esports",
+      "tech",
+      "gaming"
     ]
   },
   {
@@ -594,71 +1689,64 @@
     ]
   },
   {
-    "id": "esport-mixer",
-    "title": "Broadcast mixer",
+    "id": "emoji-dice",
+    "title": "Totally tactical dice",
     "category": "esports",
-    "url": "/assets/stickers/esport-mixer.png",
+    "url": "/assets/stickers/emoji-dice.png",
     "tags": [
-      "broadcast",
-      "mixer",
-      "tech"
+      "dice",
+      "random",
+      "strategy",
+      "esports"
     ]
   },
   {
-    "id": "esport-champ",
-    "title": "Champion trophy",
+    "id": "emoji-plug",
+    "title": "Unplugged",
     "category": "esports",
-    "url": "/assets/stickers/esport-champ.png",
+    "url": "/assets/stickers/emoji-plug.png",
     "tags": [
-      "champion",
-      "trophy",
-      "winner"
+      "plug",
+      "tech",
+      "pause",
+      "esports"
     ]
   },
   {
-    "id": "esport-sponsor",
-    "title": "Sponsor shirt",
-    "category": "esports",
-    "url": "/assets/stickers/esport-sponsor.png",
-    "tags": [
-      "sponsor",
-      "shirt",
-      "brand"
-    ]
-  },
-  {
-    "id": "esport-sub",
-    "title": "Emergency substitute",
-    "category": "esports",
-    "url": "/assets/stickers/esport-sub.png",
-    "tags": [
-      "substitute",
-      "emergency",
-      "banana",
-      "funny"
-    ]
-  },
-  {
-    "id": "esport-analyst",
-    "title": "Analyst cat",
-    "category": "esports",
-    "url": "/assets/stickers/esport-analyst.png",
-    "tags": [
-      "analyst",
-      "cat",
-      "desk",
-      "caster"
-    ]
-  },
-  {
-    "id": "sport-manager",
-    "title": "Furious manager",
+    "id": "premium-american-football",
+    "title": "American football",
     "category": "sports",
-    "url": "/assets/stickers/sport-manager.png",
+    "url": "/assets/stickers/premium-american-football.png",
     "tags": [
-      "manager",
-      "angry",
+      "ball",
+      "sport",
+      "american",
       "football"
+    ]
+  },
+  {
+    "id": "premium-red-card",
+    "title": "Big red card",
+    "category": "sports",
+    "url": "/assets/stickers/premium-red-card.png",
+    "tags": [
+      "red",
+      "card",
+      "referee",
+      "ban",
+      "decision"
+    ]
+  },
+  {
+    "id": "emoji-running-shoe",
+    "title": "Boots",
+    "category": "sports",
+    "url": "/assets/stickers/emoji-running-shoe.png",
+    "tags": [
+      "shoe",
+      "boots",
+      "football",
+      "sport"
     ]
   },
   {
@@ -673,36 +1761,25 @@
     ]
   },
   {
-    "id": "sport-referee",
-    "title": "Referee with red card",
+    "id": "sport-manager",
+    "title": "Furious manager",
     "category": "sports",
-    "url": "/assets/stickers/sport-referee.png",
+    "url": "/assets/stickers/sport-manager.png",
     "tags": [
-      "referee",
-      "card",
-      "decision"
+      "manager",
+      "angry",
+      "football"
     ]
   },
   {
-    "id": "sport-player",
-    "title": "Shocked player",
+    "id": "emoji-goal",
+    "title": "Goal",
     "category": "sports",
-    "url": "/assets/stickers/sport-player.png",
+    "url": "/assets/stickers/emoji-goal.png",
     "tags": [
-      "player",
-      "shock",
-      "team"
-    ]
-  },
-  {
-    "id": "sport-mascot",
-    "title": "Unhinged mascot",
-    "category": "sports",
-    "url": "/assets/stickers/sport-mascot.png",
-    "tags": [
-      "mascot",
-      "funny",
-      "team"
+      "goal",
+      "football",
+      "sport"
     ]
   },
   {
@@ -728,25 +1805,194 @@
     ]
   },
   {
-    "id": "sport-trophy",
-    "title": "Cup trophy",
+    "id": "sport-referee",
+    "title": "Referee with red card",
     "category": "sports",
-    "url": "/assets/stickers/sport-trophy.png",
+    "url": "/assets/stickers/sport-referee.png",
     "tags": [
-      "trophy",
-      "cup",
-      "winner"
+      "referee",
+      "card",
+      "decision"
     ]
   },
   {
-    "id": "sport-var",
-    "title": "VAR machine",
+    "id": "emoji-runner",
+    "title": "Runner",
     "category": "sports",
-    "url": "/assets/stickers/sport-var.png",
+    "url": "/assets/stickers/emoji-runner.png",
     "tags": [
-      "var",
-      "technology",
+      "runner",
+      "player",
+      "sport",
+      "fast"
+    ]
+  },
+  {
+    "id": "emoji-silver-medal",
+    "title": "Second place",
+    "category": "sports",
+    "url": "/assets/stickers/emoji-silver-medal.png",
+    "tags": [
+      "medal",
+      "sport",
+      "second"
+    ]
+  },
+  {
+    "id": "sport-player",
+    "title": "Shocked player",
+    "category": "sports",
+    "url": "/assets/stickers/sport-player.png",
+    "tags": [
+      "player",
+      "shock",
+      "team"
+    ]
+  },
+  {
+    "id": "emoji-stadium",
+    "title": "Stadium",
+    "category": "sports",
+    "url": "/assets/stickers/emoji-stadium.png",
+    "tags": [
+      "stadium",
+      "crowd",
+      "sport"
+    ]
+  },
+  {
+    "id": "emoji-bronze-medal",
+    "title": "Third place",
+    "category": "sports",
+    "url": "/assets/stickers/emoji-bronze-medal.png",
+    "tags": [
+      "medal",
+      "sport",
+      "third"
+    ]
+  },
+  {
+    "id": "emoji-weightlifter",
+    "title": "Training day",
+    "category": "sports",
+    "url": "/assets/stickers/emoji-weightlifter.png",
+    "tags": [
+      "training",
+      "strength",
+      "sport"
+    ]
+  },
+  {
+    "id": "sport-mascot",
+    "title": "Unhinged mascot",
+    "category": "sports",
+    "url": "/assets/stickers/sport-mascot.png",
+    "tags": [
+      "mascot",
+      "funny",
+      "team"
+    ]
+  },
+  {
+    "id": "emoji-yellow-card",
+    "title": "Yellow card",
+    "category": "sports",
+    "url": "/assets/stickers/emoji-yellow-card.png",
+    "tags": [
+      "yellow",
+      "card",
       "referee",
+      "sport"
+    ]
+  },
+  {
+    "id": "emoji-skull",
+    "title": "Absolutely dead",
+    "category": "chaos",
+    "url": "/assets/stickers/emoji-skull.png",
+    "tags": [
+      "skull",
+      "dead",
+      "fail",
+      "chaos"
+    ]
+  },
+  {
+    "id": "emoji-explosion",
+    "title": "Big explosion",
+    "category": "chaos",
+    "url": "/assets/stickers/emoji-explosion.png",
+    "tags": [
+      "explosion",
+      "boom",
+      "chaos"
+    ]
+  },
+  {
+    "id": "emoji-confetti",
+    "title": "Confetti attack",
+    "category": "chaos",
+    "url": "/assets/stickers/emoji-confetti.png",
+    "tags": [
+      "confetti",
+      "party",
+      "celebration",
+      "chaos"
+    ]
+  },
+  {
+    "id": "chaos-confetti",
+    "title": "Confetti cannon",
+    "category": "chaos",
+    "url": "/assets/stickers/chaos-confetti.png",
+    "tags": [
+      "confetti",
+      "celebration",
+      "party"
+    ]
+  },
+  {
+    "id": "chaos-greenfire",
+    "title": "Cursed green fire",
+    "category": "chaos",
+    "url": "/assets/stickers/chaos-greenfire.png",
+    "tags": [
+      "curse",
+      "fire",
+      "magic"
+    ]
+  },
+  {
+    "id": "chaos-siren",
+    "title": "Emergency siren",
+    "category": "chaos",
+    "url": "/assets/stickers/chaos-siren.png",
+    "tags": [
+      "emergency",
+      "alarm",
+      "warning"
+    ]
+  },
+  {
+    "id": "emoji-siren",
+    "title": "Emergency siren",
+    "category": "chaos",
+    "url": "/assets/stickers/emoji-siren.png",
+    "tags": [
+      "siren",
+      "emergency",
+      "warning",
+      "chaos"
+    ]
+  },
+  {
+    "id": "emoji-fire",
+    "title": "Everything is fine",
+    "category": "chaos",
+    "url": "/assets/stickers/emoji-fire.png",
+    "tags": [
+      "fire",
+      "burn",
       "chaos"
     ]
   },
@@ -773,36 +2019,15 @@
     ]
   },
   {
-    "id": "chaos-confetti",
-    "title": "Confetti cannon",
+    "id": "emoji-comet",
+    "title": "Incoming comet",
     "category": "chaos",
-    "url": "/assets/stickers/chaos-confetti.png",
+    "url": "/assets/stickers/emoji-comet.png",
     "tags": [
-      "confetti",
-      "celebration",
-      "party"
-    ]
-  },
-  {
-    "id": "chaos-storm",
-    "title": "Thunder cloud",
-    "category": "chaos",
-    "url": "/assets/stickers/chaos-storm.png",
-    "tags": [
-      "storm",
-      "weather",
-      "disaster"
-    ]
-  },
-  {
-    "id": "chaos-greenfire",
-    "title": "Cursed green fire",
-    "category": "chaos",
-    "url": "/assets/stickers/chaos-greenfire.png",
-    "tags": [
-      "curse",
-      "fire",
-      "magic"
+      "comet",
+      "space",
+      "disaster",
+      "chaos"
     ]
   },
   {
@@ -829,37 +2054,72 @@
     ]
   },
   {
-    "id": "chaos-siren",
-    "title": "Emergency siren",
+    "id": "emoji-cyclone",
+    "title": "Mystery vortex",
     "category": "chaos",
-    "url": "/assets/stickers/chaos-siren.png",
+    "url": "/assets/stickers/emoji-cyclone.png",
     "tags": [
-      "emergency",
-      "alarm",
-      "warning"
-    ]
-  },
-  {
-    "id": "chaos-spotlight",
-    "title": "Dramatic spotlight",
-    "category": "chaos",
-    "url": "/assets/stickers/chaos-spotlight.png",
-    "tags": [
-      "spotlight",
-      "drama",
-      "stage"
-    ]
-  },
-  {
-    "id": "chaos-box",
-    "title": "Chaos box",
-    "category": "chaos",
-    "url": "/assets/stickers/chaos-box.png",
-    "tags": [
-      "box",
-      "mystery",
+      "portal",
+      "vortex",
       "chaos",
-      "loot"
+      "teleport"
+    ]
+  },
+  {
+    "id": "emoji-hole",
+    "title": "Suspicious hole",
+    "category": "chaos",
+    "url": "/assets/stickers/emoji-hole.png",
+    "tags": [
+      "hole",
+      "trap",
+      "weird",
+      "chaos"
+    ]
+  },
+  {
+    "id": "chaos-storm",
+    "title": "Thunder cloud",
+    "category": "chaos",
+    "url": "/assets/stickers/chaos-storm.png",
+    "tags": [
+      "storm",
+      "weather",
+      "disaster"
+    ]
+  },
+  {
+    "id": "emoji-storm",
+    "title": "Thunderstorm",
+    "category": "chaos",
+    "url": "/assets/stickers/emoji-storm.png",
+    "tags": [
+      "storm",
+      "weather",
+      "chaos"
+    ]
+  },
+  {
+    "id": "emoji-tornado",
+    "title": "Tornado",
+    "category": "chaos",
+    "url": "/assets/stickers/emoji-tornado.png",
+    "tags": [
+      "tornado",
+      "weather",
+      "chaos"
+    ]
+  },
+  {
+    "id": "emoji-gravestone",
+    "title": "Well, that went badly",
+    "category": "chaos",
+    "url": "/assets/stickers/emoji-gravestone.png",
+    "tags": [
+      "grave",
+      "death",
+      "fail",
+      "chaos"
     ]
   }
 ]

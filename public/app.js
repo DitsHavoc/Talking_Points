@@ -1,4 +1,4 @@
-const BUILD_VERSION = '5.3.2';
+const BUILD_VERSION = '5.4.0';
 const app = document.querySelector('#app');
 let mode = 'home';
 let roomCode = localStorage.getItem('tp_room') || '';
@@ -335,18 +335,39 @@ function syncProducerDraft(s){
   const key=`${s.roundId||''}:${s.producerTargetSlide||s.slideNumber||1}`;
   if(key!==producerDraftKey){ producerDraftKey=key; producerDraftArtId=''; artCategory='recommended'; }
 }
+const ART_HINTS={
+  boss:['boss','villain','crown','monster','angry','smug'], villain:['villain','monster','crown','evil'], horror:['ghost','zombie','vampire','scared','skull','monster'], monster:['monster','ghost','zombie','dragon','dinosaur'],
+  money:['money','cash','loot','box','crown','trophy'], microtransaction:['money','cash','loot','box','shopping','greedy'], sponsor:['money','drink','shirt','brand','microphone'],
+  referee:['referee','card','whistle','var','decision'], manager:['manager','coach','angry','megaphone'], coach:['coach','manager','megaphone','strategy'],
+  film:['film','camera','clapper','popcorn','actor','villain'], movie:['film','camera','clapper','popcorn','actor'], actor:['actor','star','drama','film'], director:['director','camera','clapper','chair'],
+  esports:['esports','caster','coach','headset','keyboard','trophy','computer'], caster:['caster','microphone','headset','commentator'], tournament:['trophy','medal','champion','caster','stadium'],
+  football:['football','goal','card','manager','referee','trophy'], sport:['sport','football','goal','card','manager','referee','trophy'], goal:['goal','football','trophy','celebration'],
+  game:['game','controller','npc','boss','glitch','loot','developer'], gaming:['game','controller','npc','boss','glitch','loot'], developer:['developer','wrench','glitch','computer','nerd'], npc:['npc','robot','wizard','character'],
+  stealth:['sneaky','raccoon','ghost','disguise'], physics:['glitch','explosion','chaos','rocket'], loading:['loading','sleep','sloth','boring'], speed:['speedrun','runner','rocket','fast'],
+  trophy:['trophy','winner','champion','crown'], winner:['winner','trophy','champion','party'], chaos:['chaos','explosion','fire','storm','siren','confetti'], disaster:['disaster','explosion','fire','storm','crying'],
+  weird:['weird','random','gremlin','alien','fish'], ridiculous:['ridiculous','clown','weird','chaos'], angry:['angry','rage','manager'], funny:['funny','laugh','clown','animal']
+};
 function artScore(asset,s){
   const hay=`${s.topic||''} ${s.currentPrompt||''}`.toLowerCase();
   const words=new Set(hay.replace(/[^a-z0-9]+/g,' ').split(/\s+/).filter(x=>x.length>2));
-  let score=asset.category===subjectArtCategory(s.subject)?8:0;
-  if(asset.category==='chaos') score+=1.5;
-  for(const tag of asset.tags||[]) if(words.has(String(tag).toLowerCase())) score+=5;
-  if((asset.tags||[]).some(tag=>hay.includes(String(tag).toLowerCase()))) score+=2;
+  const expanded=new Set(words);
+  for(const word of words) for(const hint of ART_HINTS[word]||[]) expanded.add(hint);
+  let score=asset.category===subjectArtCategory(s.subject)?7:0;
+  if(asset.category==='chaos') score+=1;
+  const tags=(asset.tags||[]).map(x=>String(x).toLowerCase());
+  for(const tag of tags){
+    if(words.has(tag)) score+=6;
+    else if(expanded.has(tag)) score+=3.5;
+    if(hay.includes(tag)) score+=1.5;
+  }
+  const title=String(asset.title||'').toLowerCase();
+  for(const word of expanded) if(word.length>3 && title.includes(word)) score+=1.5;
   return score;
 }
 function artItemsFor(s,cat){
-  if(cat==='recommended') return [...ART_LIBRARY].sort((a,b)=>artScore(b,s)-artScore(a,s) || a.title.localeCompare(b.title)).slice(0,12);
+  if(cat==='recommended') return [...ART_LIBRARY].sort((a,b)=>artScore(b,s)-artScore(a,s) || a.title.localeCompare(b.title)).slice(0,15);
   if(cat==='subject') return ART_LIBRARY.filter(a=>a.category===subjectArtCategory(s.subject));
+  if(cat==='all') return ART_LIBRARY;
   return ART_LIBRARY.filter(a=>a.category===cat);
 }
 function renderArtCards(s,cat=artCategory){
@@ -354,8 +375,8 @@ function renderArtCards(s,cat=artCategory){
   return `<button type="button" class="artCard artNone ${!producerDraftArtId?'selected':''}" data-art-id=""><span>🚫</span><b>No image</b></button>` + items.map(a=>`<button type="button" class="artCard ${producerDraftArtId===a.id?'selected':''}" data-art-id="${esc(a.id)}"><img src="${esc(a.url)}" alt="${esc(a.title)}"><b>${esc(a.title)}</b></button>`).join('');
 }
 function artPicker(s){
-  const tabs=[['recommended','✨ Recommended'],['subject',`${subjectIcon(s.subject)} ${subjectLabel(s.subject)}`],['faces','🙂 Faces'],['creatures','🐾 Creatures'],['objects','📦 Objects'],['chaos','💥 Chaos'],['games','🎮 Games'],['film','🎥 Film'],['esports','🕹️ Esports'],['sports','⚽ Sports']];
-  return `<div class="artPanel"><div class="modeTitle artMode">🖼️ IMAGE CARD</div><div class="label">Optional local sticker art</div><div class="tiny">Pick something relevant, or deliberately ridiculous. These are bundled with the app — no web search.</div><div class="artTabs">${tabs.map(([id,label])=>`<button type="button" class="artTab ${artCategory===id?'selected':''}" data-art-cat="${id}">${label}</button>`).join('')}</div><div class="artGrid">${renderArtCards(s)}</div></div>`;
+  const tabs=[['recommended','✨ Recommended'],['subject',`${subjectIcon(s.subject)} ${subjectLabel(s.subject)}`],['faces','🙂 Faces'],['creatures','🐾 Creatures'],['objects','📦 Objects'],['chaos','💥 Chaos'],['games','🎮 Games'],['film','🎥 Film'],['esports','🕹️ Esports'],['sports','⚽ Sports'],['all','🧩 All']];
+  return `<div class="artPanel"><div class="modeTitle artMode">🖼️ IMAGE CARD</div><div class="label">Optional local sticker art</div><div class="tiny">Pick something relevant, or deliberately ridiculous. ${ART_LIBRARY.length} bundled local images — no web search.</div><div class="artTabs">${tabs.map(([id,label])=>`<button type="button" class="artTab ${artCategory===id?'selected':''}" data-art-cat="${id}">${label}</button>`).join('')}</div><div class="artGrid">${renderArtCards(s)}</div></div>`;
 }
 function producerCreatePanel(s, first=false){
   syncProducerDraft(s);
