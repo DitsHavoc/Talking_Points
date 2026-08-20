@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+<rect width="1200" height="800" fill="#f4efe8"/>
+<ellipse cx="600" cy="470" rx="320" ry="265" fill="#c98f5a"/>
+<path d="M350 315 L385 105 L520 270 Z" fill="#c98f5a"/>
+<path d="M850 315 L815 105 L680 270 Z" fill="#c98f5a"/>
+<path d="M382 257 L400 155 L474 270 Z" fill="#e9b7a5"/>
+<path d="M818 257 L800 155 L726 270 Z" fill="#e9b7a5"/>
+<ellipse cx="490" cy="430" rx="50" ry="62" fill="#fff"/>
+<ellipse cx="710" cy="430" rx="50" ry="62" fill="#fff"/>
+<ellipse cx="498" cy="438" rx="18" ry="32" fill="#222"/>
+<ellipse cx="702" cy="438" rx="18" ry="32" fill="#222"/>
+<path d="M575 520 Q600 545 625 520 Q600 490 575 520" fill="#8b4b4b"/>
+<path d="M600 544 Q560 590 520 552 M600 544 Q640 590 680 552" fill="none" stroke="#55392b" stroke-width="12" stroke-linecap="round"/>
+<path d="M480 525 L245 485 M480 555 L230 565 M720 525 L955 485 M720 555 L970 565" stroke="#55392b" stroke-width="10" stroke-linecap="round"/>
+<path d="M455 340 Q600 275 745 340" fill="none" stroke="#9d663f" stroke-width="24" stroke-linecap="round"/>
+<text x="600" y="735" font-family="Arial, sans-serif" font-size="64" font-weight="700" text-anchor="middle" fill="#3f332b">TEACHER CAT OVERRIDE</text>
+</svg>

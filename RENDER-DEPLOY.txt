@@ -1,0 +1,26 @@
+TALKING POINTS CLASSROOM V5.1.1 - RENDER DEPLOYMENT
+==================================================
+
+This folder is ready to deploy as a Render Web Service.
+
+QUICKEST METHOD
+1. Create a new GitHub repository.
+2. Upload the CONTENTS of this folder to the repository root.
+   Important: server.js, package.json and render.yaml should be at the top level.
+3. Sign in to Render and connect your GitHub account.
+4. Choose New -> Blueprint.
+5. Select the GitHub repository containing Talking Points Classroom.
+6. Render will read render.yaml automatically.
+7. Approve the free Web Service deployment.
+8. Once deployment finishes, open the supplied https://...onrender.com address.
+
+The QR code will automatically use the public HTTPS Render address when hosted.
+No database, API key or environment variable is required.
+
+LOCAL USE STILL WORKS
+- Windows: double-click run.bat.
+- Or: npm start
+
+IMPORTANT
+- Game rooms are stored in memory only. If Render restarts the service, active rooms reset.
+- This is intentional for the classroom version and means no student data is permanently stored.
