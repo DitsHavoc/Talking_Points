@@ -1,6 +1,7 @@
-Talking Points Classroom V5.3.1 – mobile art fit
+Talking Points Classroom V5.3.2 – dense mobile art grid
 
 WHAT CHANGED
-- Shrunk the curated art picker on phones so more image cards fit on screen without so much scrolling.
-- Art cards are now more uniform, use contain-fit for the PNG stickers, and use denser 4-column mobile grids.
-- Reduced padding and label size on small screens while keeping the full curated art library and Render-ready setup.
+- Reworked the curated art picker for portrait phones into a denser, easier-to-scan grid.
+- Category buttons now wrap instead of requiring sideways scrolling.
+- Art cards are tighter, squarer and use five columns on portrait mobile so more images are visible at once.
+- Removed horizontal overflow from the art picker area.
