@@ -1,1 +1,1 @@
-Curated sticker art generated for Talking Points Classroom using OpenAI image generation. Bundled locally; no web image search is used at runtime.
+V5.4 curated local art pack: 181 assets. Broken V5.3 crops were removed; this folder contains only retained clean assets, rebuilt premium cutouts and locally-rendered complete emoji-style stickers.
