@@ -1,4 +1,4 @@
-const BUILD_VERSION = '5.3.0';
+const BUILD_VERSION = '5.3.1';
 const app = document.querySelector('#app');
 let mode = 'home';
 let roomCode = localStorage.getItem('tp_room') || '';
