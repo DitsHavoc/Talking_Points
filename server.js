@@ -6,7 +6,7 @@ const crypto = require('crypto');
 
 const REQUESTED_PORT = process.env.PORT ? Number(process.env.PORT) : 0;
 let ACTIVE_PORT = 0;
-const BUILD_VERSION = '5.1.1';
+const BUILD_VERSION = '5.2.0';
 const PUBLIC = path.join(__dirname, 'public');
 const rooms = new Map();
 
@@ -611,6 +611,10 @@ function textChoice(text,prompt) {
 function drawingChoice(dataUrl,prompt) {
   return { id:randomId(6), kind:'drawing', url:dataUrl, title:'Producer drawing', prompt, flavour:'DRAWING', provider:'Producer drawing', fallback:'teacher-cat.svg' };
 }
+function comboChoice(text,dataUrl,prompt) {
+  const clean=String(text||'').trim().replace(/\s+/g,' ').slice(0,180);
+  return { id:randomId(6), kind:'combo', text:clean, title:clean || 'Producer drawing', url:dataUrl, prompt, flavour:'TEXT + DRAWING', provider:'Producer combined surprise', fallback:'teacher-cat.svg' };
+}
 function actionChoice(text,prompt) {
   const clean=String(text||'').trim().replace(/\s+/g,' ').slice(0,180);
   return { id:randomId(6), kind:'performance', text:clean, title:clean, prompt, flavour:'PERFORMANCE', provider:'Producer performance challenge' };
@@ -806,6 +810,12 @@ async function api(req, res, url) {
       return json(res, 200, publicState(room, null, true));
     }
 
+    if (req.method === 'POST' && url.pathname === '/api/host/close') {
+      const b = await readJson(req); const room = roomOr404(b.code, res); if (!room || !checkHost(room, b.hostToken, res)) return;
+      rooms.delete(room.code);
+      return json(res, 200, { ok: true });
+    }
+
     if (req.method === 'POST' && url.pathname === '/api/host/actions') {
       const b = await readJson(req); const room = roomOr404(b.code, res); if (!room || !checkHost(room, b.hostToken, res)) return;
       room.allowActions = !!b.enabled;
@@ -874,6 +884,39 @@ async function api(req, res, url) {
         votes: {}, result: null, reactions: [], roundId: randomId(5), performanceVotes: {}, performanceBonus: 0
       };
       return json(res, 200, publicState(room, null, true));
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/producer/lock') {
+      const b=await readJson(req); const room=roomOr404(b.code,res); if(!room) return;
+      const p=room.players.get(b.clientId);
+      if(!p || b.clientId!==room.round.producerId) return json(res,403,{error:'Only this round’s Producer can lock the surprise.'});
+      const canPrepare = room.round.phase === 'intro' || room.round.phase === 'choosing' || (room.round.phase === 'presenting' && room.round.slideNumber < 4);
+      if(!canPrepare) return json(res,409,{error:'There is no next surprise to prepare right now.'});
+      const slideData=producerSlideData(room);
+      const rawText=String(b.text||'').trim().replace(/\s+/g,' ').slice(0,180);
+      const dataUrl=String(b.dataUrl||'');
+      const hasDrawing=!!dataUrl;
+      if(!rawText && !hasDrawing) return json(res,400,{error:'Add some text, a drawing, or both before locking the surprise.'});
+      if(rawText && !classroomSafeOrError(res, rawText, 'That surprise')) return;
+      if(hasDrawing){
+        if(!/^data:image\/(?:png|jpeg);base64,[A-Za-z0-9+/=]+$/i.test(dataUrl)) return json(res,400,{error:'That drawing could not be read. Clear it and try again.'});
+        if(dataUrl.length > 600000) return json(res,413,{error:'That drawing is too large. Clear it and try again.'});
+      }
+      if(rawText && hasDrawing) room.round.pendingChoice=comboChoice(rawText,dataUrl,slideData.question);
+      else if(hasDrawing) room.round.pendingChoice=drawingChoice(dataUrl,slideData.question);
+      else room.round.pendingChoice=textChoice(rawText,slideData.question);
+
+      room.round.pendingPerformance=null;
+      if(room.allowActions !== false){
+        let perf=String(b.performance||'').trim().replace(/\s+/g,' ').slice(0,180);
+        if(perf){
+          const builtIns=actionPrompts[room.subject] || actionPrompts.games;
+          const isBuiltIn=builtIns.includes(perf);
+          if(!isBuiltIn && !classroomSafeOrError(res, perf, 'That performance challenge')) return;
+          room.round.pendingPerformance=actionChoice(perf,slideData.question);
+        }
+      }
+      return json(res,200,publicState(room,b.clientId));
     }
 
     if (req.method === 'POST' && url.pathname === '/api/producer/text') {

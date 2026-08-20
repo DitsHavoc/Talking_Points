@@ -272,3 +272,16 @@ body[data-screen="host"][data-phase="intro"] .topbar,
 body[data-screen="host"][data-phase="choosing"] .topbar,
 body[data-screen="host"][data-phase="presenting"] .topbar,
 body[data-screen="host"][data-phase="voting"] .topbar{display:none}
+
+
+/* V5.2 combined Producer builder + always-available exit */
+.dockExit{background:#3a2027!important;border-color:#7b3947!important;color:#ffe4e9!important}
+.builderIntro{display:flex;flex-direction:column;gap:4px;margin:12px 0;padding:14px 16px;border-radius:16px;background:linear-gradient(90deg,rgba(255,207,51,.13),rgba(123,97,255,.1));border:1px solid rgba(255,255,255,.1)}
+.builderIntro b{font-size:18px;letter-spacing:.06em}.builderIntro span{color:var(--muted);font-size:13px}
+.surpriseTextarea{min-height:96px;resize:vertical;line-height:1.35}
+.lockSurprise{width:100%;margin-top:4px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent2) 72%,var(--accent)));box-shadow:0 6px 0 rgba(0,0,0,.28)}
+.lockHint{text-align:center;margin-top:-4px}
+.actionChip.selected{outline:3px solid var(--accent);border-color:var(--accent);background:color-mix(in srgb,var(--accent) 20%,#211d39)}
+.comboReveal{display:grid;gap:18px;justify-items:center}.comboBoard{width:min(880px,100%)}
+.comboCaption{width:min(980px,100%);padding:18px 26px;border-radius:18px;background:linear-gradient(180deg,rgba(17,19,27,.98),rgba(10,13,20,.95));border:2px solid color-mix(in srgb,var(--accent) 38%,rgba(255,255,255,.12));font-size:clamp(34px,4vw,58px);font-weight:1000;line-height:1.02;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+@media(max-width:760px){.dockTray{grid-template-columns:1fr 1.2fr 1fr 1fr}.dockExit{font-size:10px}.comboCaption{font-size:32px;padding:15px}}

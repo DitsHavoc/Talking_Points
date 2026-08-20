@@ -1,4 +1,4 @@
-const BUILD_VERSION = '5.1.1';
+const BUILD_VERSION = '5.2.0';
 const app = document.querySelector('#app');
 let mode = 'home';
 let roomCode = localStorage.getItem('tp_room') || '';
@@ -101,7 +101,7 @@ function hostControlDock(s, nextLabel='', nextDisabled=false){
   } else if(s.phase==='voting'){
     main=`<button class="dockBtn dockPrimary" id="results">SHOW RESULTS</button>`;
   }
-  return `<div class="hostControlDock"><button class="controlWake" id="controlWake" title="Show controls">🎛️ CONTROLS</button><div class="dockTray"><div class="dockStatus"><span>${s.phase==='presenting'?`SLIDE ${s.slideNumber}/${s.totalSlides||4}`:s.phase==='intro'?'READY CHECK':'VOTING'}</span>${s.phase==='presenting'&&s.slideNumber<(s.totalSlides||4)?`<b class="${s.nextChoiceReady?'ready':''}">${s.nextChoiceReady?'● NEXT READY':'○ PRODUCER WORKING'}</b>`:''}</div>${main}<button class="dockBtn dockGhost" id="fullscreenBtn">⛶ FULLSCREEN</button><div class="dockHints"><span>SPACE Next</span><span>C Cat</span><span>F Fullscreen</span></div></div></div>`;
+  return `<div class="hostControlDock"><button class="controlWake" id="controlWake" title="Show controls">🎛️ CONTROLS</button><div class="dockTray"><div class="dockStatus"><span>${s.phase==='presenting'?`SLIDE ${s.slideNumber}/${s.totalSlides||4}`:s.phase==='intro'?'READY CHECK':'VOTING'}</span>${s.phase==='presenting'&&s.slideNumber<(s.totalSlides||4)?`<b class="${s.nextChoiceReady?'ready':''}">${s.nextChoiceReady?'● NEXT READY':'○ PRODUCER WORKING'}</b>`:''}</div>${main}<button class="dockBtn dockGhost" id="fullscreenBtn">⛶ FULLSCREEN</button><button class="dockBtn dockExit" id="exitGame">↩ EXIT GAME</button><div class="dockHints"><span>SPACE Next</span><span>C Cat</span><span>F Fullscreen</span></div></div></div>`;
 }
 function toggleFullscreen(){
   if(!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(()=>{});
@@ -273,7 +273,14 @@ function bindHostEvents(){
   document.querySelector('#controlWake')?.addEventListener('click',()=>wakeHostControls(true));
   document.querySelector('#fullscreenBtn')?.addEventListener('click',()=>{toggleFullscreen();wakeHostControls();});
   if(document.querySelector('.hostControlDock')) setTimeout(()=>wakeHostControls(),80);
-  document.querySelector('#quit')?.addEventListener('click',()=>{localStorage.removeItem('tp_host');localStorage.removeItem('tp_room');hostToken='';roomCode='';home()});
+  const exitGame=async()=>{
+    if(!confirm('Exit this game and close the room for everyone?')) return;
+    try{ if(roomCode&&hostToken) await post('/api/host/close',{code:roomCode,hostToken}); }catch{}
+    localStorage.removeItem('tp_host'); localStorage.removeItem('tp_room');
+    hostToken=''; roomCode=''; state=null; history.replaceState({},'',location.pathname); home();
+  };
+  document.querySelector('#quit')?.addEventListener('click',exitGame);
+  document.querySelector('#exitGame')?.addEventListener('click',exitGame);
   const psel=document.querySelector('#producerId'); if(psel) psel.onchange=()=>hostDraftProducer=psel.value;
   const prsel=document.querySelector('#presenterId'); if(prsel) prsel.onchange=()=>{ hostDraftPresenterId=prsel.value; };
   document.querySelector('#toggleLock')?.addEventListener('click',async()=>{try{state=await post('/api/host/lock',{code:roomCode,hostToken,locked:!state.locked});renderHost()}catch(e){showError(e.message)}});
@@ -313,19 +320,22 @@ function ratingRow(label,key,own){
   return `<div class="ratingBlock"><div class="ratingLabel">${label}</div><div class="ratingButtons">${[1,2,3,4,5].map(n=>`<button class="rate ${selected===n?'selected':''}" data-category="${key}" data-rating="${n}">${n}<span>★</span></button>`).join('')}</div></div>`;
 }
 function producerCreatePanel(s, first=false){
-  const pending=s.pendingPerformance?.text ? `<div class="pendingPerformance">✅ Bonus challenge locked:<br><b>${esc(s.pendingPerformance.text)}</b><div><button class="btn ghost smallbtn" id="clearAction">Remove challenge</button></div></div>` : '<div class="pendingPerformance empty">No bonus challenge set yet. That is fine — it is optional.</div>';
-  const actionBits=s.allowActions?`<div class="actionPanel"><div class="modeTitle actMode">🎭 BONUS PERFORMANCE CHALLENGE</div><div class="label">Optional extra chaos</div><div class="tiny">This does not replace the surprise. It makes the Presenter answer in a certain style. If the room thinks they nail it, they can earn bonus points.</div>${pending}<div class="actionSuggestions">${(s.actionSuggestions||[]).map(x=>`<button class="actionChip" data-action="${esc(x)}">${esc(x)}</button>`).join('')}</div><div class="searchRow actionCustom"><input class="field" id="actionText" maxlength="180" autocomplete="off" placeholder="e.g. Answer like a furious football manager"/><button class="btn alt" id="useAction">Save challenge</button></div></div>`:'';
+  const actionBits=s.allowActions?`<div class="actionPanel"><div class="modeTitle actMode">🎭 BONUS PERFORMANCE CHALLENGE</div><div class="label">Optional extra chaos</div><div class="tiny">Choose how the Presenter has to deliver their answer. This is optional and is locked together with the surprise.</div><div class="actionSuggestions">${(s.actionSuggestions||[]).map(x=>`<button class="actionChip" data-action="${esc(x)}">${esc(x)}</button>`).join('')}</div><input class="field" id="actionText" maxlength="180" autocomplete="off" placeholder="e.g. Answer like a furious football manager"/></div>`:'';
   return `<div class="producerQuestion"><div class="tiny">${first?'FIRST SURPRISE':esc(s.producerStageLabel||'NEXT SLIDE')}</div><div class="producerPrompt">${esc(s.currentPrompt||'')}</div></div>
+  <div class="builderIntro"><b>BUILD THE SURPRISE</b><span>Use text, drawing, or both. Nothing is sent until you press Lock In.</span></div>
   <div class="producerModes">
-    <div class="textFallback"><div class="modeTitle writeMode">✍️ WRITE</div><div class="label">Write the surprise</div><div class="searchRow"><input class="field" id="surpriseText" maxlength="180" autocomplete="off" placeholder="e.g. a giant chicken wearing armour"/><button class="btn alt" id="useText">Use text</button></div></div>
-    <div class="drawPanel"><div class="modeTitle drawMode">🎨 DRAW</div><div class="label">Draw the surprise</div><div class="tiny">Use your finger, stylus or mouse. Keep it simple.</div><canvas id="surpriseCanvas" width="720" height="480" aria-label="Draw the surprise"></canvas><div class="drawActions"><button class="btn ghost" id="clearDrawing">Clear</button><button class="btn" id="useDrawing">Use drawing</button></div></div>
+    <div class="textFallback"><div class="modeTitle writeMode">✍️ TEXT</div><div class="label">Optional caption / surprise text</div><textarea class="field surpriseTextarea" id="surpriseText" maxlength="180" placeholder="e.g. the club’s cursed new signing"></textarea></div>
+    <div class="drawPanel"><div class="modeTitle drawMode">🎨 DRAW</div><div class="label">Optional drawing</div><div class="tiny">Use your finger, stylus or mouse. Text + drawing together is encouraged.</div><canvas id="surpriseCanvas" width="720" height="480" aria-label="Draw the surprise"></canvas><div class="drawActions"><button class="btn ghost" id="clearDrawing">Clear drawing</button></div></div>
     ${actionBits}
+    <button class="btn big lockSurprise" id="lockSurprise">🔒 LOCK IN SURPRISE</button>
+    <div class="tiny lockHint">You need at least text or a drawing. The performance challenge is optional.</div>
   </div>`;
 }
 
 function revealedVisual(s){
   if(s.revealed?.kind==='text') return `<div class="textSurprise"><span class="quoteMark">“</span>${esc(s.revealed.text||s.revealed.title||'')}<span class="quoteMark end">”</span></div>`;
   if(s.revealed?.kind==='drawing') return `<div class="drawingBoard"><div class="tape tape1"></div><div class="tape tape2"></div><img class="slideimg drawingReveal" src="${esc(s.revealed.url||'')}" alt="Producer drawing"></div>`;
+  if(s.revealed?.kind==='combo') return `<div class="comboReveal"><div class="drawingBoard comboBoard"><div class="tape tape1"></div><div class="tape tape2"></div><img class="slideimg drawingReveal" src="${esc(s.revealed.url||'')}" alt="Producer drawing"></div><div class="comboCaption">${esc(s.revealed.text||'')}</div></div>`;
   return `${imageHtml(s.revealed)}${imageCredit(s.revealed)}`;
 }
 function performanceReveal(s){
@@ -372,36 +382,34 @@ function renderPlayer(){
 }
 function bindPlayerEvents(){
   document.querySelector('#leave')?.addEventListener('click',async()=>{try{await post('/api/leave',{code:roomCode,clientId})}catch{}localStorage.removeItem('tp_client');localStorage.removeItem('tp_room');clientId='';roomCode='';home()});
-  document.querySelector('#useText')?.addEventListener('click',async()=>{
-    const text=document.querySelector('#surpriseText')?.value.trim()||''; if(!text)return showError('Type something for the Presenter to react to.');
-    try{state=await post('/api/producer/text',{code:roomCode,clientId,text});revealSound();renderPlayer()}catch(e){showError(e.message)}
-  });
-  document.querySelector('#surpriseText')?.addEventListener('keydown',e=>{if(e.key==='Enter')document.querySelector('#useText')?.click()});
-  const sendAction=async text=>{
-    text=String(text||'').trim(); if(!text)return showError('Choose or write a performance challenge first.');
-    try{state=await post('/api/producer/action',{code:roomCode,clientId,text});performanceSting();renderPlayer()}catch(e){showError(e.message)}
-  };
-  document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>sendAction(b.dataset.action)));
-  document.querySelector('#useAction')?.addEventListener('click',()=>sendAction(document.querySelector('#actionText')?.value||''));
-  document.querySelector('#actionText')?.addEventListener('keydown',e=>{if(e.key==='Enter')document.querySelector('#useAction')?.click()});
-  document.querySelector('#clearAction')?.addEventListener('click',async()=>{try{state=await post('/api/producer/action/clear',{code:roomCode,clientId});renderPlayer()}catch(e){showError(e.message)}});
   const canvas=document.querySelector('#surpriseCanvas');
+  let drawingCtx=null, hasInk=false;
   if(canvas){
-    const ctx=canvas.getContext('2d');
+    const ctx=canvas.getContext('2d'); drawingCtx=ctx;
     ctx.fillStyle='#ffffff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.strokeStyle='#111111';ctx.lineWidth=10;ctx.lineCap='round';ctx.lineJoin='round';
-    let drawing=false,hasInk=false;
+    let drawing=false;
     const point=e=>{const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*(canvas.width/r.width),y:(e.clientY-r.top)*(canvas.height/r.height)}};
-    const start=e=>{e.preventDefault();drawing=true;hasInk=true;canvas.setPointerCapture?.(e.pointerId);const p=point(e);ctx.beginPath();ctx.moveTo(p.x,p.y)};
+    const startDraw=e=>{e.preventDefault();drawing=true;hasInk=true;canvas.setPointerCapture?.(e.pointerId);const p=point(e);ctx.beginPath();ctx.moveTo(p.x,p.y)};
     const move=e=>{if(!drawing)return;e.preventDefault();const p=point(e);ctx.lineTo(p.x,p.y);ctx.stroke()};
-    const end=e=>{if(!drawing)return;e.preventDefault();drawing=false;ctx.closePath()};
-    canvas.addEventListener('pointerdown',start);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',end);canvas.addEventListener('pointercancel',end);
+    const endDraw=e=>{if(!drawing)return;e.preventDefault();drawing=false;ctx.closePath()};
+    canvas.addEventListener('pointerdown',startDraw);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',endDraw);canvas.addEventListener('pointercancel',endDraw);
     document.querySelector('#clearDrawing')?.addEventListener('click',()=>{ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.strokeStyle='#111';hasInk=false});
-    document.querySelector('#useDrawing')?.addEventListener('click',async()=>{
-      if(!hasInk)return showError('Draw something first.');
-      const btn=document.querySelector('#useDrawing');
-      try{if(btn){btn.disabled=true;btn.textContent='Saving drawing…'}const dataUrl=canvas.toDataURL('image/jpeg',0.72);state=await post('/api/producer/draw',{code:roomCode,clientId,dataUrl});revealSound();renderPlayer()}catch(e){showError(e.message);if(btn){btn.disabled=false;btn.textContent='Use drawing'}}
-    });
   }
+  document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>{
+    const input=document.querySelector('#actionText'); if(input){ input.value=b.dataset.action||''; document.querySelectorAll('[data-action]').forEach(x=>x.classList.remove('selected')); b.classList.add('selected'); }
+  }));
+  document.querySelector('#lockSurprise')?.addEventListener('click',async()=>{
+    const text=document.querySelector('#surpriseText')?.value.trim()||'';
+    const performance=document.querySelector('#actionText')?.value.trim()||'';
+    if(!text && !hasInk) return showError('Add some text, a drawing, or both before locking the surprise.');
+    const btn=document.querySelector('#lockSurprise');
+    try{
+      if(btn){btn.disabled=true;btn.textContent='🔒 LOCKING IN…'}
+      const dataUrl=hasInk && canvas ? canvas.toDataURL('image/jpeg',0.72) : '';
+      state=await post('/api/producer/lock',{code:roomCode,clientId,text,dataUrl,performance});
+      revealSound(); renderPlayer();
+    }catch(e){showError(e.message);if(btn){btn.disabled=false;btn.textContent='🔒 LOCK IN SURPRISE'}}
+  });
   document.querySelectorAll('[data-react]').forEach(b=>b.onclick=async()=>{try{b.classList.add('popped');setTimeout(()=>b.classList.remove('popped'),180);await post('/api/react',{code:roomCode,clientId,emoji:b.dataset.react});beep(360,.035,'sine',.012)}catch(e){if(!/moment/i.test(e.message))showError(e.message)}});
   document.querySelector('#nailedIt')?.addEventListener('click',async()=>{try{state=await post('/api/performance',{code:roomCode,clientId});performanceSting();renderPlayer()}catch(e){showError(e.message)}});
   document.querySelectorAll('[data-category]').forEach(b=>b.onclick=async()=>{try{state=await post('/api/vote',{code:roomCode,clientId,category:b.dataset.category,rating:Number(b.dataset.rating)});beep(440+Number(b.dataset.rating)*60,.06,'triangle');renderPlayer()}catch(e){showError(e.message)}});

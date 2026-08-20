@@ -1,3 +1,12 @@
+Talking Points Classroom V5.2.0 – Combined Surprise Builder (Render-ready)
+
+NEW IN V5.2
+- Producers can use TEXT, DRAWING, or BOTH together.
+- Nothing locks early: build the whole surprise, optionally add a Performance Bonus Challenge, then press LOCK IN SURPRISE.
+- Combined reveals show the drawing with a large caption.
+- EXIT GAME is now available in the live-show control dock. It closes the room for everyone and returns the host to the start screen.
+- Existing Render deployment files are preserved: replace the files in your GitHub repo and Render can auto-deploy the update.
+
 Talking Points Classroom V5.1.0 – Single Screen Edition
 
 This build deliberately removes the separate teacher/projector workflow.
