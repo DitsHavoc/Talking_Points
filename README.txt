@@ -1,7 +1,9 @@
-Talking Points Classroom V5.6.1 – polish pass
+Talking Points Classroom V5.6.3 – Wildcard & Chaos AI Pack
 
 WHAT CHANGED
-- Improved Recommended image picks so strong matches appear more often and weak filler appears less often.
-- Added more keyword and synonym hints across Games, TV & Film, Esports and Sports prompts.
-- Subject-relevant picks are now prioritised more cleanly before falling back to generic chaos images.
-- Kept the V5.6 AI art pack, dense mobile grid and Render-ready setup unchanged.
+- Added 48 new high-quality AI-style random/funny assets.
+- Added a new 🎲 Wildcards tab for deliberately ridiculous images presenters can force into an answer.
+- Upgraded 💥 Chaos, 🐾 Creatures, 📦 Objects and 🙂 Faces with stronger AI-style options.
+- Every new image is exactly 512x512; the whole source image is preserved without stretching or cropping.
+- Wildcards are slightly de-prioritised in Recommended so relevant subject images still win unless the prompt strongly matches a wildcard tag.
+- Built from the clean V5.6.2 library; the removed clip-art stays removed.

@@ -1,4 +1,4 @@
-const BUILD_VERSION = '5.6.1';
+const BUILD_VERSION = '5.6.3';
 const app = document.querySelector('#app');
 let mode = 'home';
 let roomCode = localStorage.getItem('tp_room') || '';
@@ -362,6 +362,7 @@ function artScore(asset,s){
   for(const word of words) for(const hint of ART_HINTS[word]||[]) expanded.add(hint);
   let score=asset.category===subjectArtCategory(s.subject)?7:0;
   if(asset.category==='chaos') score+=1;
+  if(asset.category==='wildcards') score-=1.25;
   const tags=(asset.tags||[]).map(x=>String(x).toLowerCase());
   for(const tag of tags){
     if(words.has(tag)) score+=6;
@@ -401,7 +402,7 @@ function renderArtCards(s,cat=artCategory){
   return `<button type="button" class="artCard artNone ${!producerDraftArtId?'selected':''}" data-art-id=""><span>🚫</span><b>No image</b></button>` + items.map(a=>`<button type="button" class="artCard ${producerDraftArtId===a.id?'selected':''}" data-art-id="${esc(a.id)}"><img src="${esc(a.url)}" alt="${esc(a.title)}"><b>${esc(a.title)}</b></button>`).join('');
 }
 function artPicker(s){
-  const tabs=[['recommended','✨ Recommended'],['subject',`${subjectIcon(s.subject)} ${subjectLabel(s.subject)}`],['faces','🙂 Faces'],['creatures','🐾 Creatures'],['objects','📦 Objects'],['chaos','💥 Chaos'],['games','🎮 Games'],['film','🎥 Film'],['esports','🕹️ Esports'],['sports','⚽ Sports'],['all','🧩 All']];
+  const tabs=[['recommended','✨ Recommended'],['subject',`${subjectIcon(s.subject)} ${subjectLabel(s.subject)}`],['faces','🙂 Faces'],['creatures','🐾 Creatures'],['objects','📦 Objects'],['chaos','💥 Chaos'],['wildcards','🎲 Wildcards'],['games','🎮 Games'],['film','🎥 Film'],['esports','🕹️ Esports'],['sports','⚽ Sports'],['all','🧩 All']];
   return `<div class="artPanel"><div class="modeTitle artMode">🖼️ IMAGE CARD</div><div class="label">Optional local sticker art</div><div class="tiny">Pick something relevant, or deliberately ridiculous. ${ART_LIBRARY.length} bundled local images — no web search.</div><div class="artTabs">${tabs.map(([id,label])=>`<button type="button" class="artTab ${artCategory===id?'selected':''}" data-art-cat="${id}">${label}</button>`).join('')}</div><div class="artGrid">${renderArtCards(s)}</div></div>`;
 }
 function producerCreatePanel(s, first=false){
