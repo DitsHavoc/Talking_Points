@@ -1,6 +1,6 @@
 {
   "name": "talking-points-classroom",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "private": true,
   "description": "Talking Points Classroom - browser-based classroom presentation game",
   "engines": {

@@ -1,3 +1,10 @@
+Talking Points Classroom V5.2.1
+
+FIXES
+- Added a permanent START / EXIT GAME button on every live host presentation screen.
+- Fixed combined Text + Drawing presentation so the Producer text is always prominent and visible beside/above the drawing.
+- Keeps the bottom control dock Exit as a second route.
+
 Talking Points Classroom V5.2.0 – Combined Surprise Builder (Render-ready)
 
 NEW IN V5.2

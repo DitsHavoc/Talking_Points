@@ -1,4 +1,4 @@
-const BUILD_VERSION = '5.2.0';
+const BUILD_VERSION = '5.2.1';
 const app = document.querySelector('#app');
 let mode = 'home';
 let roomCode = localStorage.getItem('tp_room') || '';
@@ -103,6 +103,11 @@ function hostControlDock(s, nextLabel='', nextDisabled=false){
   }
   return `<div class="hostControlDock"><button class="controlWake" id="controlWake" title="Show controls">🎛️ CONTROLS</button><div class="dockTray"><div class="dockStatus"><span>${s.phase==='presenting'?`SLIDE ${s.slideNumber}/${s.totalSlides||4}`:s.phase==='intro'?'READY CHECK':'VOTING'}</span>${s.phase==='presenting'&&s.slideNumber<(s.totalSlides||4)?`<b class="${s.nextChoiceReady?'ready':''}">${s.nextChoiceReady?'● NEXT READY':'○ PRODUCER WORKING'}</b>`:''}</div>${main}<button class="dockBtn dockGhost" id="fullscreenBtn">⛶ FULLSCREEN</button><button class="dockBtn dockExit" id="exitGame">↩ EXIT GAME</button><div class="dockHints"><span>SPACE Next</span><span>C Cat</span><span>F Fullscreen</span></div></div></div>`;
 }
+function hostExitChip(s){
+  if(!s || s.phase==='lobby' || s.phase==='results') return '';
+  return `<button class="hostExitChip" id="hostExitChip" title="Close this room and return to the start screen">↩ START / EXIT GAME</button>`;
+}
+
 function toggleFullscreen(){
   if(!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(()=>{});
   else document.exitFullscreen?.().catch(()=>{});
@@ -242,7 +247,7 @@ function renderHost(){
   const s=state; setTheme(s.subject,s.phase,'host'); normaliseLobbyDraft(s);
   const joinBase=lanUrl||location.origin;
   const joinLink=`${joinBase}/?room=${encodeURIComponent(s.code)}`;
-  const header=`<div class="topbar"><div class="row"><span class="pill majorpill">ROOM ${esc(s.code)}</span><span class="pill subjectpill">${subjectIcon(s.subject)} ${subjectLabel(s.subject)}</span>${s.hostName?`<span class="pill">🎬 ${esc(s.hostName)}</span>`:''}<span class="pill">👥 ${s.counts.total}</span><span class="pill ${s.locked?'lockedpill':''}">${s.locked?'🔒 Locked':'🔓 Open'}</span><span class="pill enginepill">✨ ${esc(s.imageEngine||'Write + draw + act')}</span><span class="pill">🛡️ Language filter ON</span><span class="pill buildpill">V${BUILD_VERSION}</span></div><button class="btn ghost" id="quit">Exit</button></div>`;
+  const header=`<div class="topbar"><div class="row"><span class="pill majorpill">ROOM ${esc(s.code)}</span><span class="pill subjectpill">${subjectIcon(s.subject)} ${subjectLabel(s.subject)}</span>${s.hostName?`<span class="pill">🎬 ${esc(s.hostName)}</span>`:''}<span class="pill">👥 ${s.counts.total}</span><span class="pill ${s.locked?'lockedpill':''}">${s.locked?'🔒 Locked':'🔓 Open'}</span><span class="pill enginepill">✨ ${esc(s.imageEngine||'Write + draw + performance bonus')}</span><span class="pill">🛡️ Language filter ON</span><span class="pill buildpill">V${BUILD_VERSION}</span></div><button class="btn ghost" id="quit">Exit</button></div>`;
   let body='';
   if(s.phase==='lobby'){
     const players=(s.players||[]);
@@ -262,6 +267,7 @@ function renderHost(){
   } else if(s.phase==='results'){
     body=`<div class="resultsShow"><div class="gameshowKicker">🏆 ROUND RESULTS</div><div class="presenter resultPresenter">${esc(s.presenter)}</div><div class="topic">The audience has spoken</div><div class="results"><div class="resultCard medal"><div class="medalIcon">😂</div><span>FUNNIEST</span><strong>${Number(s.result?.funny||0).toFixed(1)}</strong></div><div class="resultCard medal heroMedal"><div class="medalIcon">🧠</div><span>CONVINCING</span><strong>${Number(s.result?.convincing||0).toFixed(1)}</strong></div><div class="resultCard medal"><div class="medalIcon">🔥</div><span>RECOVERY</span><strong>${Number(s.result?.recovery||0).toFixed(1)}</strong></div></div><div class="overall overallScore"><span>ROUND SCORE</span><b>${Number(s.result?.overall||0).toFixed(1)} ★</b><small>${s.result?.votes||0} complete vote${s.result?.votes===1?'':'s'}</small></div><div class="overall overallScore bonusScore"><span>🎭 PERFORMANCE BONUS</span><b>+${Number(s.result?.performanceBonus||0).toFixed(1)} ★</b><small>Reward for fully committing to the challenge</small></div><div class="overall overallScore finalScore"><span>FINAL SCORE</span><b>${Number(s.result?.finalOverall||s.result?.overall||0).toFixed(1)} ★</b></div><div class="centre"><button class="btn big" id="again">NEXT ROUND</button></div></div>`;
   }
+  if(s.phase!=='lobby' && s.phase!=='results') body = hostExitChip(s) + body;
   shell(header+body,true);
   if(s.phase==='lobby') renderJoinQr(joinLink);
   bindHostEvents();
@@ -281,6 +287,7 @@ function bindHostEvents(){
   };
   document.querySelector('#quit')?.addEventListener('click',exitGame);
   document.querySelector('#exitGame')?.addEventListener('click',exitGame);
+  document.querySelector('#hostExitChip')?.addEventListener('click',exitGame);
   const psel=document.querySelector('#producerId'); if(psel) psel.onchange=()=>hostDraftProducer=psel.value;
   const prsel=document.querySelector('#presenterId'); if(prsel) prsel.onchange=()=>{ hostDraftPresenterId=prsel.value; };
   document.querySelector('#toggleLock')?.addEventListener('click',async()=>{try{state=await post('/api/host/lock',{code:roomCode,hostToken,locked:!state.locked});renderHost()}catch(e){showError(e.message)}});
@@ -335,7 +342,7 @@ function producerCreatePanel(s, first=false){
 function revealedVisual(s){
   if(s.revealed?.kind==='text') return `<div class="textSurprise"><span class="quoteMark">“</span>${esc(s.revealed.text||s.revealed.title||'')}<span class="quoteMark end">”</span></div>`;
   if(s.revealed?.kind==='drawing') return `<div class="drawingBoard"><div class="tape tape1"></div><div class="tape tape2"></div><img class="slideimg drawingReveal" src="${esc(s.revealed.url||'')}" alt="Producer drawing"></div>`;
-  if(s.revealed?.kind==='combo') return `<div class="comboReveal"><div class="drawingBoard comboBoard"><div class="tape tape1"></div><div class="tape tape2"></div><img class="slideimg drawingReveal" src="${esc(s.revealed.url||'')}" alt="Producer drawing"></div><div class="comboCaption">${esc(s.revealed.text||'')}</div></div>`;
+  if(s.revealed?.kind==='combo') return `<div class="comboReveal"><div class="comboCaption"><span>PRODUCER SAYS</span><strong>${esc(s.revealed.text||'')}</strong></div><div class="drawingBoard comboBoard"><div class="tape tape1"></div><div class="tape tape2"></div><img class="slideimg drawingReveal" src="${esc(s.revealed.url||'')}" alt="Producer drawing"></div></div>`;
   return `${imageHtml(s.revealed)}${imageCredit(s.revealed)}`;
 }
 function performanceReveal(s){

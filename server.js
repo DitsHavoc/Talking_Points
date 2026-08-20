@@ -6,7 +6,7 @@ const crypto = require('crypto');
 
 const REQUESTED_PORT = process.env.PORT ? Number(process.env.PORT) : 0;
 let ACTIVE_PORT = 0;
-const BUILD_VERSION = '5.2.0';
+const BUILD_VERSION = '5.2.1';
 const PUBLIC = path.join(__dirname, 'public');
 const rooms = new Map();
 
