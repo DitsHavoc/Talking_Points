@@ -1,4 +1,4 @@
-const BUILD_VERSION = '5.4.0';
+const BUILD_VERSION = '5.6.1';
 const app = document.querySelector('#app');
 let mode = 'home';
 let roomCode = localStorage.getItem('tp_room') || '';
@@ -345,7 +345,15 @@ const ART_HINTS={
   game:['game','controller','npc','boss','glitch','loot','developer'], gaming:['game','controller','npc','boss','glitch','loot'], developer:['developer','wrench','glitch','computer','nerd'], npc:['npc','robot','wizard','character'],
   stealth:['sneaky','raccoon','ghost','disguise'], physics:['glitch','explosion','chaos','rocket'], loading:['loading','sleep','sloth','boring'], speed:['speedrun','runner','rocket','fast'],
   trophy:['trophy','winner','champion','crown'], winner:['winner','trophy','champion','party'], chaos:['chaos','explosion','fire','storm','siren','confetti'], disaster:['disaster','explosion','fire','storm','crying'],
-  weird:['weird','random','gremlin','alien','fish'], ridiculous:['ridiculous','clown','weird','chaos'], angry:['angry','rage','manager'], funny:['funny','laugh','clown','animal']
+  weird:['weird','random','gremlin','alien','fish'], ridiculous:['ridiculous','clown','weird','chaos'], angry:['angry','rage','manager'], funny:['funny','laugh','clown','animal'],
+  horror:['ghost','monster','slasher','zombie','creature'], monster:['monster','creature','villain','boss','ghost'], villain:['villain','boss','crime','monster','mask'], hero:['hero','captain','winner','adventurer','goalkeeper'],
+  crime:['crime','boss','money','mob','villain'], sci:['space','captain','robot','future','science'], scifi:['space','captain','robot','future','science'], fantasy:['wizard','monster','crown','magic','boss'], magic:['wizard','fantasy','star','glow'],
+  commentary:['caster','commentator','microphone','headset','hype'], interview:['interviewer','microphone','nervous','awkward'], stream:['streamer','headset','computer','sleepy'], streamer:['streamer','headset','computer','sleepy'],
+  footballer:['football','player','goal','striker','captain'], keeper:['goalkeeper','save','hero','ball'], goalie:['goalkeeper','save','hero','ball'], striker:['striker','goal','celebration','football'], supporter:['fan','crowd','megaphone','scarf'], fan:['fan','crowd','megaphone','scarf'],
+  tv:['film','camera','actor','director','critic'], series:['film','actor','crime','villain','drama'], moviegoer:['film','critic','popcorn','cinema'],
+  coding:['developer','computer','glitch','nerd','coffee'], programmer:['developer','computer','glitch','nerd','coffee'], bug:['bug','glitch','developer','monster'], glitch:['glitch','developer','monster','digital'],
+  retro:['arcade','champion','controller','game'], arcade:['arcade','champion','retro','trophy'], coop:['co-op','adventurer','controller','team'], racing:['speedrunner','fast','goal','rocket'],
+  trophyless:['sad','trophy','loser','bench'], sponsorless:['money','brand','awkward'], mascot:['mascot','bird','funny','chaos'], crowd:['fan','supporter','commentator','celebration'], nature:['documentary','presenter','camera','exhausted']
 };
 function artScore(asset,s){
   const hay=`${s.topic||''} ${s.currentPrompt||''}`.toLowerCase();
@@ -365,7 +373,25 @@ function artScore(asset,s){
   return score;
 }
 function artItemsFor(s,cat){
-  if(cat==='recommended') return [...ART_LIBRARY].sort((a,b)=>artScore(b,s)-artScore(a,s) || a.title.localeCompare(b.title)).slice(0,15);
+  if(cat==='recommended'){
+    const scored=[...ART_LIBRARY].map(asset=>({asset,score:artScore(asset,s)}));
+    scored.sort((a,b)=>b.score-a.score || a.asset.title.localeCompare(b.asset.title));
+    const picked=[];
+    const seen=new Set();
+    const strong=scored.filter(x=>x.score>=8.5);
+    const medium=scored.filter(x=>x.score>=5.5 && x.score<8.5);
+    const subject=scored.filter(x=>x.asset.category===subjectArtCategory(s.subject));
+    const chaos=scored.filter(x=>x.asset.category==='chaos');
+    for(const pool of [strong,medium,subject,chaos,scored]){
+      for(const item of pool){
+        if(seen.has(item.asset.id)) continue;
+        seen.add(item.asset.id);
+        picked.push(item.asset);
+        if(picked.length>=15) return picked;
+      }
+    }
+    return picked.slice(0,15);
+  }
   if(cat==='subject') return ART_LIBRARY.filter(a=>a.category===subjectArtCategory(s.subject));
   if(cat==='all') return ART_LIBRARY;
   return ART_LIBRARY.filter(a=>a.category===cat);
