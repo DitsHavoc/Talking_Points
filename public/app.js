@@ -1,4 +1,4 @@
-const BUILD_VERSION = '5.2.1';
+const BUILD_VERSION = '5.3.0';
 const app = document.querySelector('#app');
 let mode = 'home';
 let roomCode = localStorage.getItem('tp_room') || '';
@@ -17,6 +17,10 @@ let hostDraftProducer = '';
 let hostDraftPresenterId = '';
 let hostDraftPresenterName = '';
 let hostSetupName = localStorage.getItem('tp_hostname') || '';
+const ART_LIBRARY = window.TP_ART_LIBRARY || [];
+let producerDraftArtId = '';
+let producerDraftKey = '';
+let artCategory = 'recommended';
 let hostControlsTimer = null;
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
@@ -326,16 +330,45 @@ function ratingRow(label,key,own){
   const selected=Number(own?.[key]||0);
   return `<div class="ratingBlock"><div class="ratingLabel">${label}</div><div class="ratingButtons">${[1,2,3,4,5].map(n=>`<button class="rate ${selected===n?'selected':''}" data-category="${key}" data-rating="${n}">${n}<span>★</span></button>`).join('')}</div></div>`;
 }
+function subjectArtCategory(subject){ return ({games:'games',film:'film',esports:'esports',sports:'sports'})[subject] || 'games'; }
+function syncProducerDraft(s){
+  const key=`${s.roundId||''}:${s.producerTargetSlide||s.slideNumber||1}`;
+  if(key!==producerDraftKey){ producerDraftKey=key; producerDraftArtId=''; artCategory='recommended'; }
+}
+function artScore(asset,s){
+  const hay=`${s.topic||''} ${s.currentPrompt||''}`.toLowerCase();
+  const words=new Set(hay.replace(/[^a-z0-9]+/g,' ').split(/\s+/).filter(x=>x.length>2));
+  let score=asset.category===subjectArtCategory(s.subject)?8:0;
+  if(asset.category==='chaos') score+=1.5;
+  for(const tag of asset.tags||[]) if(words.has(String(tag).toLowerCase())) score+=5;
+  if((asset.tags||[]).some(tag=>hay.includes(String(tag).toLowerCase()))) score+=2;
+  return score;
+}
+function artItemsFor(s,cat){
+  if(cat==='recommended') return [...ART_LIBRARY].sort((a,b)=>artScore(b,s)-artScore(a,s) || a.title.localeCompare(b.title)).slice(0,12);
+  if(cat==='subject') return ART_LIBRARY.filter(a=>a.category===subjectArtCategory(s.subject));
+  return ART_LIBRARY.filter(a=>a.category===cat);
+}
+function renderArtCards(s,cat=artCategory){
+  const items=artItemsFor(s,cat);
+  return `<button type="button" class="artCard artNone ${!producerDraftArtId?'selected':''}" data-art-id=""><span>🚫</span><b>No image</b></button>` + items.map(a=>`<button type="button" class="artCard ${producerDraftArtId===a.id?'selected':''}" data-art-id="${esc(a.id)}"><img src="${esc(a.url)}" alt="${esc(a.title)}"><b>${esc(a.title)}</b></button>`).join('');
+}
+function artPicker(s){
+  const tabs=[['recommended','✨ Recommended'],['subject',`${subjectIcon(s.subject)} ${subjectLabel(s.subject)}`],['faces','🙂 Faces'],['creatures','🐾 Creatures'],['objects','📦 Objects'],['chaos','💥 Chaos'],['games','🎮 Games'],['film','🎥 Film'],['esports','🕹️ Esports'],['sports','⚽ Sports']];
+  return `<div class="artPanel"><div class="modeTitle artMode">🖼️ IMAGE CARD</div><div class="label">Optional local sticker art</div><div class="tiny">Pick something relevant, or deliberately ridiculous. These are bundled with the app — no web search.</div><div class="artTabs">${tabs.map(([id,label])=>`<button type="button" class="artTab ${artCategory===id?'selected':''}" data-art-cat="${id}">${label}</button>`).join('')}</div><div class="artGrid">${renderArtCards(s)}</div></div>`;
+}
 function producerCreatePanel(s, first=false){
+  syncProducerDraft(s);
   const actionBits=s.allowActions?`<div class="actionPanel"><div class="modeTitle actMode">🎭 BONUS PERFORMANCE CHALLENGE</div><div class="label">Optional extra chaos</div><div class="tiny">Choose how the Presenter has to deliver their answer. This is optional and is locked together with the surprise.</div><div class="actionSuggestions">${(s.actionSuggestions||[]).map(x=>`<button class="actionChip" data-action="${esc(x)}">${esc(x)}</button>`).join('')}</div><input class="field" id="actionText" maxlength="180" autocomplete="off" placeholder="e.g. Answer like a furious football manager"/></div>`:'';
   return `<div class="producerQuestion"><div class="tiny">${first?'FIRST SURPRISE':esc(s.producerStageLabel||'NEXT SLIDE')}</div><div class="producerPrompt">${esc(s.currentPrompt||'')}</div></div>
-  <div class="builderIntro"><b>BUILD THE SURPRISE</b><span>Use text, drawing, or both. Nothing is sent until you press Lock In.</span></div>
+  <div class="builderIntro"><b>BUILD THE SURPRISE</b><span>Pick an image, add text, draw — use one or combine them. Nothing is sent until Lock In.</span></div>
   <div class="producerModes">
+    ${artPicker(s)}
     <div class="textFallback"><div class="modeTitle writeMode">✍️ TEXT</div><div class="label">Optional caption / surprise text</div><textarea class="field surpriseTextarea" id="surpriseText" maxlength="180" placeholder="e.g. the club’s cursed new signing"></textarea></div>
-    <div class="drawPanel"><div class="modeTitle drawMode">🎨 DRAW</div><div class="label">Optional drawing</div><div class="tiny">Use your finger, stylus or mouse. Text + drawing together is encouraged.</div><canvas id="surpriseCanvas" width="720" height="480" aria-label="Draw the surprise"></canvas><div class="drawActions"><button class="btn ghost" id="clearDrawing">Clear drawing</button></div></div>
+    <div class="drawPanel"><div class="modeTitle drawMode">🎨 DRAW</div><div class="label">Optional drawing</div><div class="tiny">Use your finger, stylus or mouse. Image + caption + doodle is absolutely allowed.</div><canvas id="surpriseCanvas" width="720" height="480" aria-label="Draw the surprise"></canvas><div class="drawActions"><button class="btn ghost" id="clearDrawing">Clear drawing</button></div></div>
     ${actionBits}
     <button class="btn big lockSurprise" id="lockSurprise">🔒 LOCK IN SURPRISE</button>
-    <div class="tiny lockHint">You need at least text or a drawing. The performance challenge is optional.</div>
+    <div class="tiny lockHint">Use at least an image, text or a drawing. The performance challenge is optional.</div>
   </div>`;
 }
 
@@ -343,6 +376,12 @@ function revealedVisual(s){
   if(s.revealed?.kind==='text') return `<div class="textSurprise"><span class="quoteMark">“</span>${esc(s.revealed.text||s.revealed.title||'')}<span class="quoteMark end">”</span></div>`;
   if(s.revealed?.kind==='drawing') return `<div class="drawingBoard"><div class="tape tape1"></div><div class="tape tape2"></div><img class="slideimg drawingReveal" src="${esc(s.revealed.url||'')}" alt="Producer drawing"></div>`;
   if(s.revealed?.kind==='combo') return `<div class="comboReveal"><div class="comboCaption"><span>PRODUCER SAYS</span><strong>${esc(s.revealed.text||'')}</strong></div><div class="drawingBoard comboBoard"><div class="tape tape1"></div><div class="tape tape2"></div><img class="slideimg drawingReveal" src="${esc(s.revealed.url||'')}" alt="Producer drawing"></div></div>`;
+  if(s.revealed?.kind==='artBuilder'){
+    const caption=s.revealed.text?`<div class="comboCaption artCaption"><span>PRODUCER SAYS</span><strong>${esc(s.revealed.text)}</strong></div>`:'';
+    const art=s.revealed.artUrl?`<div class="artRevealCard"><img src="${esc(s.revealed.artUrl)}" alt="${esc(s.revealed.artTitle||'Producer image card')}"><b>${esc(s.revealed.artTitle||'')}</b></div>`:'';
+    const draw=s.revealed.drawingUrl?`<div class="drawingBoard artDrawing"><div class="tape tape1"></div><div class="tape tape2"></div><img class="slideimg drawingReveal" src="${esc(s.revealed.drawingUrl)}" alt="Producer drawing"></div>`:'';
+    return `<div class="artBuilderReveal">${caption}<div class="artBuilderMedia">${art}${draw}</div></div>`;
+  }
   return `${imageHtml(s.revealed)}${imageCredit(s.revealed)}`;
 }
 function performanceReveal(s){
@@ -402,19 +441,32 @@ function bindPlayerEvents(){
     canvas.addEventListener('pointerdown',startDraw);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',endDraw);canvas.addEventListener('pointercancel',endDraw);
     document.querySelector('#clearDrawing')?.addEventListener('click',()=>{ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.strokeStyle='#111';hasInk=false});
   }
+  const bindArtCards=()=>{
+    document.querySelectorAll('[data-art-id]').forEach(b=>b.addEventListener('click',()=>{
+      producerDraftArtId=b.dataset.artId||'';
+      document.querySelectorAll('[data-art-id]').forEach(x=>x.classList.toggle('selected',(x.dataset.artId||'')===producerDraftArtId));
+      beep(520,.04,'triangle',.012);
+    }));
+  };
+  bindArtCards();
+  document.querySelectorAll('[data-art-cat]').forEach(b=>b.addEventListener('click',()=>{
+    artCategory=b.dataset.artCat||'recommended';
+    document.querySelectorAll('[data-art-cat]').forEach(x=>x.classList.toggle('selected',x.dataset.artCat===artCategory));
+    const grid=document.querySelector('.artGrid'); if(grid){grid.innerHTML=renderArtCards(state,artCategory); bindArtCards();}
+  }));
   document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>{
     const input=document.querySelector('#actionText'); if(input){ input.value=b.dataset.action||''; document.querySelectorAll('[data-action]').forEach(x=>x.classList.remove('selected')); b.classList.add('selected'); }
   }));
   document.querySelector('#lockSurprise')?.addEventListener('click',async()=>{
     const text=document.querySelector('#surpriseText')?.value.trim()||'';
     const performance=document.querySelector('#actionText')?.value.trim()||'';
-    if(!text && !hasInk) return showError('Add some text, a drawing, or both before locking the surprise.');
+    if(!text && !hasInk && !producerDraftArtId) return showError('Pick an image, add some text, draw something — or combine them before locking the surprise.');
     const btn=document.querySelector('#lockSurprise');
     try{
       if(btn){btn.disabled=true;btn.textContent='🔒 LOCKING IN…'}
       const dataUrl=hasInk && canvas ? canvas.toDataURL('image/jpeg',0.72) : '';
-      state=await post('/api/producer/lock',{code:roomCode,clientId,text,dataUrl,performance});
-      revealSound(); renderPlayer();
+      state=await post('/api/producer/lock',{code:roomCode,clientId,text,dataUrl,performance,assetId:producerDraftArtId});
+      producerDraftArtId=''; revealSound(); renderPlayer();
     }catch(e){showError(e.message);if(btn){btn.disabled=false;btn.textContent='🔒 LOCK IN SURPRISE'}}
   });
   document.querySelectorAll('[data-react]').forEach(b=>b.onclick=async()=>{try{b.classList.add('popped');setTimeout(()=>b.classList.remove('popped'),180);await post('/api/react',{code:roomCode,clientId,emoji:b.dataset.react});beep(360,.035,'sine',.012)}catch(e){if(!/moment/i.test(e.message))showError(e.message)}});

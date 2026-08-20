@@ -6,8 +6,10 @@ const crypto = require('crypto');
 
 const REQUESTED_PORT = process.env.PORT ? Number(process.env.PORT) : 0;
 let ACTIVE_PORT = 0;
-const BUILD_VERSION = '5.2.1';
+const BUILD_VERSION = '5.3.0';
 const PUBLIC = path.join(__dirname, 'public');
+const ART_LIBRARY = JSON.parse(fs.readFileSync(path.join(__dirname,'art-library.json'),'utf8'));
+const ART_ASSETS = new Map(ART_LIBRARY.map(a=>[a.id,a]));
 const rooms = new Map();
 
 
@@ -615,6 +617,10 @@ function comboChoice(text,dataUrl,prompt) {
   const clean=String(text||'').trim().replace(/\s+/g,' ').slice(0,180);
   return { id:randomId(6), kind:'combo', text:clean, title:clean || 'Producer drawing', url:dataUrl, prompt, flavour:'TEXT + DRAWING', provider:'Producer combined surprise', fallback:'teacher-cat.svg' };
 }
+function artBuilderChoice(text,dataUrl,asset,prompt) {
+  const clean=String(text||'').trim().replace(/\s+/g,' ').slice(0,180);
+  return { id:randomId(6), kind:'artBuilder', text:clean, title:clean || asset?.title || 'Producer image card', artId:asset?.id||'', artTitle:asset?.title||'', artUrl:asset?.url||'', drawingUrl:dataUrl||'', prompt, flavour:'CURATED ART', provider:'Local curated art', fallback:'teacher-cat.svg' };
+}
 function actionChoice(text,prompt) {
   const clean=String(text||'').trim().replace(/\s+/g,' ').slice(0,180);
   return { id:randomId(6), kind:'performance', text:clean, title:clean, prompt, flavour:'PERFORMANCE', provider:'Producer performance challenge' };
@@ -896,13 +902,17 @@ async function api(req, res, url) {
       const rawText=String(b.text||'').trim().replace(/\s+/g,' ').slice(0,180);
       const dataUrl=String(b.dataUrl||'');
       const hasDrawing=!!dataUrl;
-      if(!rawText && !hasDrawing) return json(res,400,{error:'Add some text, a drawing, or both before locking the surprise.'});
+      const assetId=String(b.assetId||'').trim();
+      const asset=assetId ? ART_ASSETS.get(assetId) : null;
+      if(assetId && !asset) return json(res,400,{error:'That image card is not recognised.'});
+      if(!rawText && !hasDrawing && !asset) return json(res,400,{error:'Pick an image, add some text, draw something, or combine them before locking the surprise.'});
       if(rawText && !classroomSafeOrError(res, rawText, 'That surprise')) return;
       if(hasDrawing){
         if(!/^data:image\/(?:png|jpeg);base64,[A-Za-z0-9+/=]+$/i.test(dataUrl)) return json(res,400,{error:'That drawing could not be read. Clear it and try again.'});
         if(dataUrl.length > 600000) return json(res,413,{error:'That drawing is too large. Clear it and try again.'});
       }
-      if(rawText && hasDrawing) room.round.pendingChoice=comboChoice(rawText,dataUrl,slideData.question);
+      if(asset) room.round.pendingChoice=artBuilderChoice(rawText,dataUrl,asset,slideData.question);
+      else if(rawText && hasDrawing) room.round.pendingChoice=comboChoice(rawText,dataUrl,slideData.question);
       else if(hasDrawing) room.round.pendingChoice=drawingChoice(dataUrl,slideData.question);
       else room.round.pendingChoice=textChoice(rawText,slideData.question);
 

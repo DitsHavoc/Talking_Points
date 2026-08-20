@@ -1,4 +1,4 @@
-Talking Points Classroom V5.2.1
+Talking Points Classroom V5.3.0
 
 FIXES
 - Added a permanent START / EXIT GAME button on every live host presentation screen.
@@ -38,3 +38,10 @@ KEPT FROM V4.9
 - Cheesy built-in gameshow music and stings
 - Subject skins, reactions, QR join, room lock and role rotation
 - Strict server-side classroom language filter
+
+V5.3 CURATED ART
+- 75 bundled local sticker cards generated for the project.
+- Recommended cards use the current subject and question keywords.
+- Categories: Faces, Creatures, Objects, Chaos, Games, TV & Film, Esports and Sports.
+- Images can combine with caption text, drawing and the optional performance bonus.
+- No live image search or external image API is used.
